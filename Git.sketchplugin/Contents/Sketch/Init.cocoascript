@@ -1,0 +1,16 @@
+// Init git repo, add this file to the repo and commit it (cmd alt ctrl n)
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var path = shared.getCurrentDirectory(doc);
+    var currentFileName = shared.getCurrentFileName(doc);
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git init && git add \"%@\" && git commit -m 'first commit'", path, currentFileName);
+    var message = shared.exec(command);
+    doc.showMessage(message);
+  } catch(e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+  }
+}

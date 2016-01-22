@@ -1,0 +1,56 @@
+// Common library of things
+
+var shared = {
+  getCurrentFileName: function(doc) {
+    return doc.fileURL().lastPathComponent();
+  },
+  getCurrentDirectory: function(doc) {
+    return doc.fileURL().URLByDeletingLastPathComponent().path();
+  },
+  exec: function(command) {
+    var task = NSTask.alloc().init();
+    var pipe = NSPipe.pipe();
+    var errPipe = NSPipe.pipe();
+
+    task.setLaunchPath_(@"/bin/sh");
+    task.setArguments_(NSArray.arrayWithObjects_("-c", command, nil));
+    task.setStandardOutput_(pipe);
+    task.setStandardError_(errPipe);
+    task.launch();
+
+    var data = errPipe.fileHandleForReading().readDataToEndOfFile();
+    if (data != nil && data.length())
+    {
+      var message = NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
+      NSException.raise_format_("failed", message);
+    }
+    data = pipe.fileHandleForReading().readDataToEndOfFile();
+    return NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
+  },
+  createSelect: function(msg, items, selectedItemIndex, okLabel, cancelLabel) {
+    selectedItemIndex = selectedItemIndex || 0;
+
+    var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25));
+    accessory.addItemsWithObjectValues(items);
+    accessory.selectItemAtIndex(selectedItemIndex);
+
+    var alert = NSAlert.alloc().init();
+    alert.setMessageText(msg);
+    alert.addButtonWithTitle(okLabel || 'OK');
+    alert.addButtonWithTitle(cancelLabel || 'Cancel');
+    alert.setAccessoryView(accessory);
+
+    var responseCode = alert.runModal();
+    var sel = accessory.indexOfSelectedItem();
+
+    return {
+      responseCode: responseCode,
+      index: sel
+    };
+  },
+  getCurrentBranch: function(doc) {
+    var path = this.getCurrentDirectory(doc);
+    var currentBranchCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git rev-parse --abbrev-ref HEAD", path);
+    return this.exec(currentBranchCommand).split('\n')[0];
+  }
+};

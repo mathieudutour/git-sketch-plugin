@@ -1,0 +1,16 @@
+// Push (cmd alt ctrl p)
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var path = shared.getCurrentDirectory(doc);
+
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git push -q", path);
+    var message = shared.exec(command);
+    doc.showMessage(message.split('\n').join(' '));
+  } catch (e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+  }
+}

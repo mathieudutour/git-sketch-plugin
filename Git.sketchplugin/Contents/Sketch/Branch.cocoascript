@@ -1,0 +1,19 @@
+// Branch & checkout (cmd alt ctrl n)
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var path = shared.getCurrentDirectory(doc);
+    var branchName = doc.askForUserInput_initialValue_('Branch name', '');
+
+    if (branchName != null) {
+      var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -qb %@", path, branchName);
+      var message = shared.exec(command);
+      doc.showMessage("Branch " + branchName + " created");
+    }
+  } catch (e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+  }
+}

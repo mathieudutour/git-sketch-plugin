@@ -1,0 +1,29 @@
+// Checkout (cmd alt ctrl o)
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var path = shared.getCurrentDirectory(doc);
+    var listBranchesCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git branch | awk -F ' +' '! /\(no branch\)/ {print $2}'", path);
+    var listBranches = shared.exec(listBranchesCommand);
+    if (listBranches != null && listBranches !== '') {
+      listBranches = listBranches.split('\n');
+      listBranches.pop();
+      var currentBranch = shared.getCurrentBranch(doc);
+      var currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
+      var branch = shared.createSelect('Checkout branch', listBranches, currentIndex, 'Checkout');
+      if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
+        var selectedBranch = listBranches[branch.index];
+        var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -q %@", path, selectedBranch);
+        var message = shared.exec(command);
+        doc.showMessage("Switched to " + selectedBranch);
+      }
+    } else {
+      doc.showMessage("No branches");
+    }
+  } catch (e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+  }
+}

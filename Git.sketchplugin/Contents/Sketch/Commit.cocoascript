@@ -1,0 +1,20 @@
+// Commits all working file to git (cmd alt ctrl c)
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var path = shared.getCurrentDirectory(doc);
+    var currentBranch = shared.getCurrentBranch(doc);
+    var commitMsg = doc.askForUserInput_initialValue_('Commit to "' + currentBranch + '"', '');
+
+    if (commitMsg != nil) {
+      var command = NSString.stringWithFormat("\\cd \"%@\" && \\git commit -m '%@' -a; \\exit", path, commitMsg);
+      var message = shared.exec(command);
+      doc.showMessage(message.split('\n').join(' '));
+    }
+  } catch (e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+  }
+}

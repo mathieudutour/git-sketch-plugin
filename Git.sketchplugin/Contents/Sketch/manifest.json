@@ -1,0 +1,58 @@
+{
+  "name": "Git",
+  "description": "Plugin to handle versioning in git",
+  "author": "Mathieu Dutour",
+  "authorEmail" : "mathieu@dutour.me",
+  "homepage": "http://github.com/mathieudutour/git-sketch-plugin",
+  "version": "0.1.0",
+  "identifier": "me.dutour.mathieu.git-plugin",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Commit",
+      "identifier": "commit",
+      "shortcut": "cmd alt ctrl c",
+      "script": "Commit.cocoascript",
+    },
+    {
+      "name": "Push",
+      "identifier": "push",
+      "shortcut": "cmd alt ctrl p",
+      "script": "Push.cocoascript",
+    },
+    {
+      "name": "New Branch",
+      "identifier": "branch",
+      "shortcut": "cmd alt ctrl n",
+      "script": "Branch.cocoascript",
+    },
+    {
+      "name": "Switch branch",
+      "identifier": "checkout",
+      "shortcut": "cmd alt ctrl o",
+      "script": "Checkout.cocoascript",
+    },
+    {
+      "name": "Init Git",
+      "identifier": "init",
+      "script": "Init.cocoascript",
+    },
+    {
+      "name": "Open terminal",
+      "identifier": "terminal",
+      "script": "OpenTerminal.cocoascript",
+    },
+  ],
+  "menu": {
+    "title": "Git",
+    "items": [
+      "commit",
+      "push",
+      "branch",
+      "checkout",
+      "init",
+      "terminal"
+    ]
+  }
+}
