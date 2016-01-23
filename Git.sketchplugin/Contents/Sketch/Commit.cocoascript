@@ -10,6 +10,7 @@ var onRun = function(context) {
     var commitMsg = doc.askForUserInput_initialValue_('Commit to "' + currentBranch + '"', '');
 
     if (commitMsg != nil) {
+      shared.exportArtboards(doc);
       var command = NSString.stringWithFormat("\\cd \"%@\" && \\git commit -m '%@' -a; \\exit", path, commitMsg);
       var message = shared.exec(command);
       doc.showMessage(message.split('\n').join(' '));

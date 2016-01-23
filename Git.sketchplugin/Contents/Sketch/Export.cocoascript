@@ -1,0 +1,13 @@
+// Export artboards for pretty diffs
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var message = shared.exportArtboards(doc);
+    doc.showMessage("Artboards exported");
+  } catch(e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+  }
+}

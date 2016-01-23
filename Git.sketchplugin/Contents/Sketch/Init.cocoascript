@@ -1,4 +1,4 @@
-// Init git repo, add this file to the repo and commit it (cmd alt ctrl n)
+// Init git repo and add current file to the repo (cmd alt ctrl n)
 
 @import 'shared.cocoascript'
 
@@ -7,7 +7,7 @@ var onRun = function(context) {
   try {
     var path = shared.getCurrentDirectory(doc);
     var currentFileName = shared.getCurrentFileName(doc);
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git init && git add \"%@\" && git commit -m 'first commit'", path, currentFileName);
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git init && git add \"%@\"", path, currentFileName);
     var message = shared.exec(command);
     doc.showMessage(message);
   } catch(e) {

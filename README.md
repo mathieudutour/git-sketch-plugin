@@ -1,10 +1,15 @@
 git-sketch-plugin
 =========
 
- A Git client built right into <a href="http://www.bohemiancoding.com/sketch/">Sketch</a>. Compatible with Sketch 3.4.
+ A Git client built right into <a href="http://www.bohemiancoding.com/sketch/">Sketch</a>. Generate pretty diffs so that everybody knows what are the changes!
+
+ Compatible with Sketch 3.4.
 
 ![screen shot](ScreenShot.png)
 
+## Requirements
+* [Git](https://git-scm.com/)
+* [Sketchtool](http://www.sketchapp.com/tool/) installed in `/usr/local/bin/sketchtool` (default location)
 
 ## Installation
 * Download this repo as a zip
@@ -27,7 +32,8 @@ Client                       | Command
  Push                        | `git push -q`
  New Branch                  | `git checkout -qb branchName`
  Switch Branch               | `git checkout -q branchName`
- Init Git                    | `git init && git add currentFile && git commit -m 'first commit'`
+ Add file to git             | `git add currentFile`
+ Init Git repo               | `git init && git add currentFile`
 
 
 ## License

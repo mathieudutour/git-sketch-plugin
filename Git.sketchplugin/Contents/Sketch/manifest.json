@@ -4,10 +4,10 @@
   "author": "Mathieu Dutour",
   "authorEmail" : "mathieu@dutour.me",
   "homepage": "http://github.com/mathieudutour/git-sketch-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "identifier": "me.dutour.mathieu.git-plugin",
   "compatibleVersion": 3,
-  "bundleVersion": 1,
+  "bundleVersion": 2,
   "commands": [
     {
       "name": "Commit",
@@ -34,7 +34,17 @@
       "script": "Checkout.cocoascript",
     },
     {
-      "name": "Init Git",
+      "name": "Generate files for pretty diffs",
+      "identifier": "export",
+      "script": "Export.cocoascript",
+    },
+    {
+      "name": "Add file to git",
+      "identifier": "add",
+      "script": "Add.cocoascript",
+    },
+    {
+      "name": "Init git repo",
       "identifier": "init",
       "script": "Init.cocoascript",
     },
@@ -51,6 +61,8 @@
       "push",
       "branch",
       "checkout",
+      "export",
+      "add",
       "init",
       "terminal"
     ]

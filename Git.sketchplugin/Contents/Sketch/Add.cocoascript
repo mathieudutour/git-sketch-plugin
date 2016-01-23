@@ -1,4 +1,4 @@
-// Push (cmd alt ctrl p)
+// Add this file to the repo
 
 @import 'shared.cocoascript'
 
@@ -6,11 +6,11 @@ var onRun = function(context) {
   var doc = context.document;
   try {
     var path = shared.getCurrentDirectory(doc);
-
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git push -q", path);
+    var currentFileName = shared.getCurrentFileName(doc);
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git add \"%@\"", path, currentFileName);
     var message = shared.exec(command);
-    doc.showMessage("Changes pushed");
-  } catch (e) {
+    doc.showMessage("File added to git");
+  } catch(e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
   }
 }

@@ -12,7 +12,7 @@ var shared = {
     var pipe = NSPipe.pipe();
     var errPipe = NSPipe.pipe();
 
-    task.setLaunchPath_(@"/bin/sh");
+    task.setLaunchPath_(@"/bin/bash");
     task.setArguments_(NSArray.arrayWithObjects_("-c", command, nil));
     task.setStandardOutput_(pipe);
     task.setStandardError_(errPipe);
@@ -51,6 +51,19 @@ var shared = {
   getCurrentBranch: function(doc) {
     var path = this.getCurrentDirectory(doc);
     var currentBranchCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git rev-parse --abbrev-ref HEAD", path);
-    return this.exec(currentBranchCommand).split('\n')[0];
+    var branch;
+    try {
+      branch = this.exec(currentBranchCommand).split('\n')[0];
+    } catch (e) {
+      branch = 'master';
+    }
+    return branch;
+  },
+  exportArtboards: function(doc) {
+    var path = this.getCurrentDirectory(doc);
+    var currentFileName = this.getCurrentFileName(doc);
+    var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p .exportedArtboards && rm -rf \".exportedArtboards/%@\" && mkdir \".exportedArtboards/%@\" && \\/usr/local/bin/sketchtool export artboards \"%@\" --output=\".exportedArtboards/%@\" --overwriting=YES && git add .exportedArtboards", path, currentFileNameWithoutExtension, currentFileNameWithoutExtension, currentFileName, currentFileNameWithoutExtension);
+    return this.exec(command);
   }
 };
