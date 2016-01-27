@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Git Sketch Plugin by mathieudutour</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Git Sketch Plugin</h1>
+      <h2 class="project-tagline">A Git client generating pretty diffs built right into Sketch.</h2>
+      <a href="https://github.com/mathieudutour/git-sketch-plugin" class="btn">View on GitHub</a>
+      <a href="https://github.com/mathieudutour/git-sketch-plugin/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mathieudutour/git-sketch-plugin/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="git-sketch-plugin" class="anchor" href="#git-sketch-plugin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>git-sketch-plugin</h1>
+
+<p>A Git client built right into <a href="http://www.bohemiancoding.com/sketch">Sketch</a>. Generate <a href="https://github.com/mathieudutour/git-sketch-plugin/pull/1/files">pretty diffs</a> so that everybody knows what are the changes!</p>
+
+<p>From ...
+<img src="https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/example/ScreenShotBad.png" alt="Ugly">
+... To
+<img src="https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/example/ScreenShotNice.png" alt="Pretty"></p>
+
+<p>Compatible with Sketch 3.4.</p>
+
+<p><img src="https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/example/ScreenCast.gif" alt="screen cast"></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li><a href="https://git-scm.com/">Git</a></li>
+<li>
+<a href="http://www.sketchapp.com/tool/">Sketchtool</a> installed in <code>/usr/local/bin/sketchtool</code> (default location)</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<ul>
+<li>
+<a href="https://github.com/mathieudutour/git-sketch-plugin/archive/master.zip">Download</a> this repo as a zip</li>
+<li>Double-click on Git.sketchplugin</li>
+</ul>
+
+<h2>
+<a id="workflow" class="anchor" href="#workflow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Workflow</h2>
+
+<p>Once:</p>
+
+<ul>
+<li>Init the git repo</li>
+<li>Add all the sketch files you are working on the repo</li>
+</ul>
+
+<p>Then:</p>
+
+<ul>
+<li>Create a new branch when you start working on a new feature</li>
+<li>Work normally on your design</li>
+<li>Save the file</li>
+<li>Commit the changes with a meaningful message describing them. The plugin will extract the artboards in your file in order to show the differences easily.</li>
+<li>Push your changes to the remote.</li>
+<li>Create a pull request from your branch to the master branch.</li>
+<li>Voila. Your co-workers can review the changes, comment on them and approve them. Once approved, merge the pull request.</li>
+</ul>
+
+<p>For a more in-depth explanation of a nice git flow, check out <a href="https://about.gitlab.com/2014/09/29/gitlab-flow/">this article</a>.</p>
+
+<h2>
+<a id="default-key-bindings" class="anchor" href="#default-key-bindings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default key bindings</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Action</th>
+<th align="left">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Commit your changes</td>
+<td align="left">
+<kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>cmd</kbd> + <kbd>c</kbd>
+</td>
+</tr>
+<tr>
+<td align="left">Push your changes</td>
+<td align="left">
+<kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>cmd</kbd> + <kbd>p</kbd>
+</td>
+</tr>
+<tr>
+<td align="left">Create a new branch</td>
+<td align="left">
+<kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>cmd</kbd> + <kbd>n</kbd>
+</td>
+</tr>
+<tr>
+<td align="left">Switch to an existing branch</td>
+<td align="left">
+<kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>cmd</kbd> + <kbd>o</kbd>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="git-command-behind" class="anchor" href="#git-command-behind" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git command behind</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Client</th>
+<th align="left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Commit</td>
+<td align="left"><code>git commit -m 'message' -a</code></td>
+</tr>
+<tr>
+<td align="left">Push</td>
+<td align="left"><code>git push -q</code></td>
+</tr>
+<tr>
+<td align="left">New Branch</td>
+<td align="left"><code>git checkout -qb branchName</code></td>
+</tr>
+<tr>
+<td align="left">Switch Branch</td>
+<td align="left"><code>git checkout -q branchName</code></td>
+</tr>
+<tr>
+<td align="left">Add file to git</td>
+<td align="left"><code>git add currentFile</code></td>
+</tr>
+<tr>
+<td align="left">Init Git repo</td>
+<td align="left"><code>git init &amp;&amp; git add currentFile</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mathieudutour/git-sketch-plugin">Git Sketch Plugin</a> is maintained by <a href="https://github.com/mathieudutour">mathieudutour</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-72976922-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
