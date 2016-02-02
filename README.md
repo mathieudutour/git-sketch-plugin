@@ -8,7 +8,7 @@ From ...
 ... To
 ![Pretty](example/ScreenShotNice.png)
 
- Compatible with Sketch <= 3.4.
+ Compatible with Sketch >= 3.1 (not with the sandboxed version ie from the App Store).
 
 ![screen cast](example/ScreenCast.gif)
 
