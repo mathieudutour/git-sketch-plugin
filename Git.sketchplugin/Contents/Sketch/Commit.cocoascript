@@ -13,7 +13,7 @@ var onRun = function(context) {
       if (commitMsg.checked) {
         shared.exportArtboards(doc);
       }
-      var command = NSString.stringWithFormat("\\cd \"%@\" && \\git commit -m '%@' -a; \\exit", path, commitMsg);
+      var command = NSString.stringWithFormat("\\cd \"%@\" && \\git commit -m '%@' -a; \\exit", path, commitMsg.message);
       var message = shared.exec(command);
       doc.showMessage(message.split('\n').join(' '));
     }

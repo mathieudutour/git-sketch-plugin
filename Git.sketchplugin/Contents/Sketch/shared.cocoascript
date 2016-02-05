@@ -34,7 +34,7 @@ var shared = {
     var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0,0,300,25));
     checkbox.setButtonType(3);
     checkbox.title = checkboxMsg;
-    checkbox.state = checked ? NSOnState : NSOffState;
+    checkbox.state = checked ? 1 : 0;
     accessory.addSubview(input);
     accessory.addSubview(checkbox);
 
@@ -45,12 +45,12 @@ var shared = {
     alert.setAccessoryView(accessory);
 
     var responseCode = alert.runModal();
-    var message = input.text;
+    var message = input.stringValue();
 
     return {
       responseCode: responseCode,
       message: message,
-      checked: checkbox.state === NSOnState
+      checked: checkbox.state() == 1
     };
   },
   createSelect: function(msg, items, selectedItemIndex, okLabel, cancelLabel) {
