@@ -22,10 +22,36 @@ var shared = {
     if (data != nil && data.length())
     {
       var message = NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
-      NSException.raise_format_("failed", message);
+      return NSException.raise_format_("failed", message);
     }
     data = pipe.fileHandleForReading().readDataToEndOfFile();
     return NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
+  },
+  createInputWithCheckbox: function(msg, checkboxMsg, checked, okLabel, cancelLabel) {
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,50));
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,25,300,25));
+    input.editable = true;
+    var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0,0,300,25));
+    checkbox.setButtonType(3);
+    checkbox.title = checkboxMsg;
+    checkbox.state = checked ? NSOnState : NSOffState;
+    accessory.addSubview(input);
+    accessory.addSubview(checkbox);
+
+    var alert = NSAlert.alloc().init();
+    alert.setMessageText(msg);
+    alert.addButtonWithTitle(okLabel || 'OK');
+    alert.addButtonWithTitle(cancelLabel || 'Cancel');
+    alert.setAccessoryView(accessory);
+
+    var responseCode = alert.runModal();
+    var message = input.text;
+
+    return {
+      responseCode: responseCode,
+      message: message,
+      checked: checkbox.state === NSOnState
+    };
   },
   createSelect: function(msg, items, selectedItemIndex, okLabel, cancelLabel) {
     selectedItemIndex = selectedItemIndex || 0;
