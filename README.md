@@ -8,11 +8,10 @@ From ...
 ... To
 ![Pretty](example/ScreenShotNice.png)
 
- Compatible with Sketch >= 3.1 (not with the sandboxed version ie from the App Store).
-
 ![screen cast](example/ScreenCast.gif)
 
 ## Requirements
+* [Sketch](http://sketchapp.com/) >= 3.1 (not with the sandboxed version ie from the App Store).
 * [Git](https://git-scm.com/)
 * [Sketchtool](http://www.sketchapp.com/tool/) installed in `/usr/local/bin/sketchtool` (default location)
 
