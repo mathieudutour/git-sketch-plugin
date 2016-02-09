@@ -16,7 +16,7 @@ From ...
 * [Sketchtool](http://www.sketchapp.com/tool/) installed in `/usr/local/bin/sketchtool` (default location)
 
 ## Installation
-* Download this repo as a zip
+* [Download](https://github.com/mathieudutour/git-sketch-plugin/archive/master.zip) this repo as a zip
 * Double-click on Git.sketchplugin
 
 ## Workflow
