@@ -3,8 +3,13 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
+
   var doc = context.document;
   try {
+    if (NSApp.mainWindow().documentEdited()) {
+      NSApp.displayDialog_withTitle_("You have some unsaved changes", "Not so fast");
+      return;
+    }
     var path = shared.getCurrentDirectory(doc);
     var listBranchesCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git branch | awk -F ' +' '! /\(no branch\)/ {print $2}'", path);
     var listBranches = shared.exec(listBranchesCommand);
@@ -26,6 +31,7 @@ var onRun = function(context) {
         var message = shared.exec(command);
         try {
           doc.showMessage("Switched to branch '" + selectedBranch + "'");
+          NSApp.mainWindow().close();
           var currentFilePath = path + shared.getCurrentFileName(doc);
           [[NSWorkspace sharedWorkspace] openFile:currentFilePath withApplication:'Sketch']]
         } catch (e) {
@@ -36,6 +42,6 @@ var onRun = function(context) {
       doc.showMessage("No branches");
     }
   } catch (e) {
-    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+    NSApp.displayDialog_withTitle_(e, "Failed...");
   }
 }
