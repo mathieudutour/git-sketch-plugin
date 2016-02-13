@@ -6,7 +6,7 @@ var onRun = function(context) {
 
   var doc = context.document;
   try {
-    if (NSApp.mainWindow().documentEdited()) {
+    if (NSApp.mainWindow().documentEdited) {
       NSApp.displayDialog_withTitle_("You have some unsaved changes", "Not so fast");
       return;
     }
