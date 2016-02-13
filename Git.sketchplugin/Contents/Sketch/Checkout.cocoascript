@@ -25,9 +25,13 @@ var onRun = function(context) {
         var selectedBranch = listBranches[branch.index];
         var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -q %@", path, selectedBranch);
         var message = shared.exec(command);
-        // var app = NSApp.delegate();
-        // app.openFile(path + shared.getCurrentFileName(doc));
-        doc.showMessage("Switched to branch '" + selectedBranch + "'");
+        try {
+          doc.showMessage("Switched to branch '" + selectedBranch + "'");
+          var app = NSApp.delegate();
+          app.openFile(path + shared.getCurrentFileName(doc));
+        } catch (e) {
+          log(e)
+        }
       }
     } else {
       doc.showMessage("No branches");
