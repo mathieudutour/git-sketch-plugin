@@ -16,7 +16,8 @@ var onRun = function(context) {
         listBranches.pop();
         currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
       } catch() {
-        currentIndex = 0;
+        doc.showMessage("No branches");
+        return;
       }
       var branch = shared.createSelect('Checkout branch', listBranches, currentIndex, 'Checkout');
       if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
