@@ -16,7 +16,6 @@ var onRun = function(context) {
         listBranches.pop();
         currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
       } catch (e) {
-        log(e)
         doc.showMessage("No branches");
         return;
       }
@@ -27,8 +26,8 @@ var onRun = function(context) {
         var message = shared.exec(command);
         try {
           doc.showMessage("Switched to branch '" + selectedBranch + "'");
-          var app = NSApp.delegate();
-          app.openFile(path + shared.getCurrentFileName(doc));
+          var currentFilePath = path + shared.getCurrentFileName(doc);
+          [[NSWorkspace sharedWorkspace] openFile:currentFilePath withApplication:'Sketch']]
         } catch (e) {
           log(e)
         }
