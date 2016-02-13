@@ -35,6 +35,18 @@ Then:
 
 For a more in-depth explanation of a nice git flow, check out [this article](https://about.gitlab.com/2014/09/29/gitlab-flow/).
 
+## Enabling Git LFS
+_**Note: This is optional. In using the Git LFS extension, all contributors must have it installed, and the git remote (ie Github, Bitbucket, Gitlab) must have it enabled with sufficient storage available to the hosting account.**_
+
+Git LFS is an extension for git that enables a quicker way to push and pull changes that involve binary files, like `.png` and `.sketch`. It is not critical to using this plugin, but it may help maintain a healthy git repository.
+
+Start by enabling LFS for your repo:
+
+1. [Downloading and install](https://git-lfs.github.com/) Git LFS to your machine
+2. Go into the terminal for your repo (through Sketch, _Plugins > Git > Open terminal_)
+3. Paste the following into your repo, `git lfs install && git track '*.png' && git track '*.sketch' && git add .gitattributes`
+4. Thats it. You need only run these commands once. Your team mates will have to download and install Git LFS onto their machines as well (so, just step 1).
+
 ## Default key bindings
 
  Action                       | Shortcut
