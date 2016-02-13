@@ -15,7 +15,8 @@ var onRun = function(context) {
       try {
         listBranches.pop();
         currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
-      } catch() {
+      } catch (e) {
+        log(e)
         doc.showMessage("No branches");
         return;
       }
