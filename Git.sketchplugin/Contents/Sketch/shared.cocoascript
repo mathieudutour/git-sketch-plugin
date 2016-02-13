@@ -22,6 +22,7 @@ var shared = {
     if (data != nil && data.length())
     {
       var message = NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
+      log(message)
       return NSException.raise_format_("failed", message);
     }
     data = pipe.fileHandleForReading().readDataToEndOfFile();

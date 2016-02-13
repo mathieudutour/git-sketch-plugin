@@ -12,13 +12,13 @@ var onRun = function(context) {
       listBranches = listBranches.split('\n');
       var currentBranch = shared.getCurrentBranch(doc);
       var currentIndex = 0;
-      try {
-        listBranches.pop();
-        currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
-      } catch() {
-        doc.showMessage("No branches");
-        return;
-      }
+      // try {
+      //   listBranches.pop();
+      //   currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
+      // } catch() {
+      //   doc.showMessage("No branches");
+      //   return;
+      // }
       var branch = shared.createSelect('Checkout branch', listBranches, currentIndex, 'Checkout');
       if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         var selectedBranch = listBranches[branch.index];
