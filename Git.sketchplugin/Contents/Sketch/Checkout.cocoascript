@@ -10,16 +10,21 @@ var onRun = function(context) {
     var listBranches = shared.exec(listBranchesCommand);
     if (listBranches != null && listBranches !== '') {
       listBranches = listBranches.split('\n');
-      listBranches.pop();
       var currentBranch = shared.getCurrentBranch(doc);
-      var currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
+      var currentIndex = 0;
+      try {
+        listBranches.pop();
+        currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
+      } catch() {
+        currentIndex = 0;
+      }
       var branch = shared.createSelect('Checkout branch', listBranches, currentIndex, 'Checkout');
       if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         var selectedBranch = listBranches[branch.index];
         var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -q %@", path, selectedBranch);
         var message = shared.exec(command);
         var app = NSApp.delegate();
-        app.refreshCurrentDocument();
+        app.openFile(path + shared.getCurrentFileName(doc));
         doc.showMessage("Switched to branch '" + selectedBranch + "'");
       }
     } else {
