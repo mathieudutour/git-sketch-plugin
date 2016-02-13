@@ -6,7 +6,7 @@ var onRun = function(context) {
 
   var doc = context.document;
   try {
-    if (NSApp.mainWindow().documentEdited) {
+    if (doc._documentWindow.documentEdited) {
       NSApp.displayDialog_withTitle_("You have some unsaved changes", "Not so fast");
       return;
     }
@@ -31,7 +31,7 @@ var onRun = function(context) {
         var message = shared.exec(command);
         try {
           doc.showMessage("Switched to branch '" + selectedBranch + "'");
-          NSApp.mainWindow().close();
+          doc._documentWindow.close();
           var currentFilePath = path + shared.getCurrentFileName(doc);
           [[NSWorkspace sharedWorkspace] openFile:currentFilePath withApplication:'Sketch']]
         } catch (e) {
