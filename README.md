@@ -44,7 +44,7 @@ Start by enabling LFS for your repo:
 
 1. [Downloading and install](https://git-lfs.github.com/) Git LFS to your machine
 2. Go into the terminal for your repo (through Sketch, _Plugins > Git > Open terminal_)
-3. Paste the following into your repo, `git lfs install && git track '*.png' && git track '*.sketch' && git add .gitattributes`
+3. Paste the following into your repo, `git lfs install && git lfs track '*.png' && git lfs track '*.sketch' && git add .gitattributes`
 4. Thats it. You need only run these commands once. Your team mates will have to download and install Git LFS onto their machines as well (so, just step 1).
 
 ## Default key bindings
