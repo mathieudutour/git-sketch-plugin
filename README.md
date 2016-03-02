@@ -1,3 +1,5 @@
+<img align="right" src="logo.png">
+
 git-sketch-plugin
 =========
 
