@@ -7,6 +7,8 @@ git-sketch-plugin
 
 From ...
 ![Ugly](example/ScreenShotBad.png)
+
+
 ... To
 ![Pretty](example/ScreenShotNice.png)
 
