@@ -19,24 +19,27 @@
     </section>
 
     <section class="main-content">
-      <h1>
+      <p><img align="right" src="logo.png"></p>
+
+<h1>
 <a id="git-sketch-plugin" class="anchor" href="#git-sketch-plugin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>git-sketch-plugin</h1>
 
 <p>A Git client built right into <a href="http://www.bohemiancoding.com/sketch">Sketch</a>. Generate <a href="https://github.com/mathieudutour/git-sketch-plugin/pull/1/files">pretty diffs</a> so that everybody knows what are the changes!</p>
 
 <p>From ...
-<img src="https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/example/ScreenShotBad.png" alt="Ugly">
-... To
-<img src="https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/example/ScreenShotNice.png" alt="Pretty"></p>
+<img src="example/ScreenShotBad.png" alt="Ugly"></p>
 
-<p>Compatible with Sketch 3.4.</p>
+<p>... To
+<img src="example/ScreenShotNice.png" alt="Pretty"></p>
 
-<p><img src="https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/example/ScreenCast.gif" alt="screen cast"></p>
+<p><img src="example/ScreenCast.gif" alt="screen cast"></p>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
+<li>
+<a href="http://sketchapp.com/">Sketch</a> &gt;= 3.1 (not with the sandboxed version ie from the App Store).</li>
 <li><a href="https://git-scm.com/">Git</a></li>
 <li>
 <a href="http://www.sketchapp.com/tool/">Sketchtool</a> installed in <code>/usr/local/bin/sketchtool</code> (default location)</li>
@@ -74,6 +77,24 @@
 </ul>
 
 <p>For a more in-depth explanation of a nice git flow, check out <a href="https://about.gitlab.com/2014/09/29/gitlab-flow/">this article</a>.</p>
+
+<h2>
+<a id="enabling-git-lfs" class="anchor" href="#enabling-git-lfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Enabling Git LFS</h2>
+
+<p><em><strong>Note: This is optional. In using the Git LFS extension, all contributors must have it installed, and the git remote (ie Github, Bitbucket, Gitlab) must have it enabled with sufficient storage available to the hosting account.</strong></em></p>
+
+<p>Git LFS is an extension for git that enables a quicker way to push and pull changes that involve binary files, like <code>.png</code> and <code>.sketch</code>. It is not critical to using this plugin, but it may help maintain a healthy git repository.</p>
+
+<p>Start by enabling LFS for your repo:</p>
+
+<ol>
+<li>
+<a href="https://git-lfs.github.com/">Downloading and install</a> Git LFS to your machine</li>
+<li>Go into the terminal for your repo (through Sketch, <em>Plugins &gt; Git &gt; Open terminal</em>)</li>
+<li>Paste the following into your repo, <code>git lfs install &amp;&amp; git lfs track '*.png' &amp;&amp; git lfs track '*.sketch' &amp;&amp; git add .gitattributes</code>
+</li>
+<li>Thats it. You need only run these commands once. Your team mates will have to download and install Git LFS onto their machines as well (so, just step 1).</li>
+</ol>
 
 <h2>
 <a id="default-key-bindings" class="anchor" href="#default-key-bindings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default key bindings</h2>
