@@ -13,7 +13,7 @@ var shared = {
     var errPipe = NSPipe.pipe();
 
     task.setLaunchPath_(@"/bin/bash");
-    task.setArguments_(NSArray.arrayWithObjects_("-c", command, nil));
+    task.setArguments_(NSArray.arrayWithObjects_("-c", "-l", command, nil));
     task.setStandardOutput_(pipe);
     task.setStandardError_(errPipe);
     task.launch();
