@@ -89,7 +89,7 @@ var shared = {
     var path = this.getCurrentDirectory(doc);
     var currentFileName = this.getCurrentFileName(doc);
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p .exportedArtboards && rm -rf \".exportedArtboards/%@\" && mkdir \".exportedArtboards/%@\" && \\/usr/local/bin/sketchtool export artboards \"%@\" --output=\".exportedArtboards/%@\" --overwriting=YES && git add .exportedArtboards", path, currentFileNameWithoutExtension, currentFileNameWithoutExtension, currentFileName, currentFileNameWithoutExtension);
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p .exportedArtboards && rm -rf \".exportedArtboards/%@\" && mkdir \".exportedArtboards/%@\" && %@/Contents/Resources/sketchtool/bin/sketchtool export artboards \"%@\" --output=\".exportedArtboards/%@\" --overwriting=YES && git add .exportedArtboards", path, currentFileNameWithoutExtension, currentFileNameWithoutExtension, [[NSBundle mainBundle] bundlePath], currentFileName, currentFileNameWithoutExtension);
     return this.exec(command);
   }
 };
