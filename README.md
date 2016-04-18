@@ -15,9 +15,8 @@ From ...
 ![screen cast](example/ScreenCast.gif)
 
 ## Requirements
-* [Sketch](http://sketchapp.com/) >= 3.1 (not with the sandboxed version ie from the App Store).
+* [Sketch](http://sketchapp.com/) >= 3.4 (not with the sandboxed version ie from the App Store).
 * [Git](https://git-scm.com/)
-* [Sketchtool](http://www.sketchapp.com/tool/) installed in `/usr/local/bin/sketchtool` (default location)
 
 ## Installation
 * [Download](https://github.com/mathieudutour/git-sketch-plugin/archive/master.zip) this repo as a zip
