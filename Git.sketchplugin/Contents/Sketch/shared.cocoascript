@@ -91,5 +91,26 @@ var shared = {
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
     var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p .exportedArtboards && rm -rf \".exportedArtboards/%@\" && mkdir \".exportedArtboards/%@\" && %@/Contents/Resources/sketchtool/bin/sketchtool export artboards \"%@\" --output=\".exportedArtboards/%@\" --overwriting=YES && git add .exportedArtboards", path, currentFileNameWithoutExtension, currentFileNameWithoutExtension, [[NSBundle mainBundle] bundlePath], currentFileName, currentFileNameWithoutExtension);
     return this.exec(command);
+  },
+  commit: function (doc) {
+	var path = this.getCurrentDirectory(doc);
+    var currentBranch = this.getCurrentBranch(doc);
+    var commitMsg = this.createInputWithCheckbox('Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', true, 'Commit');
+
+    if (commitMsg.responseCode === 1000 && commitMsg.message !== nil) {
+      if (commitMsg.checked) {
+        this.exportArtboards(doc);
+      }
+      var command = NSString.stringWithFormat("\\cd \"%@\" && \\git commit -m '%@' -a; \\exit", path, commitMsg.message);
+      var message = this.exec(command);
+      doc.showMessage(message.split('\n').join(' '));
+    }
+  },
+  push: function (doc) {
+	var path = this.getCurrentDirectory(doc);
+
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git push -q", path);
+    var message = this.exec(command);
+    doc.showMessage("Changes pushed");
   }
 };

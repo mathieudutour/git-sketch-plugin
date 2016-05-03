@@ -1,13 +1,13 @@
-// Commits all working file to git (cmd alt ctrl c)
+// Push (cmd alt ctrl k)
 
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
   var doc = context.document;
   try {
-	shared.commit(doc);
+    shared.commit(doc); 
+    shared.push(doc); 
   } catch (e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
-    throw e;
   }
 }

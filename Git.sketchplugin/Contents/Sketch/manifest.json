@@ -10,6 +10,12 @@
   "bundleVersion": 2,
   "commands": [
     {
+      "name": "Commit & Push",
+      "identifier": "commitpush",
+      "shortcut": "cmd alt ctrl k",
+      "script": "CommitPush.cocoascript",
+    },
+	{
       "name": "Commit",
       "identifier": "commit",
       "shortcut": "cmd alt ctrl c",
