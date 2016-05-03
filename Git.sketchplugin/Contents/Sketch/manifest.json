@@ -63,6 +63,7 @@
   "menu": {
     "title": "Git",
     "items": [
+      "commitpush",
       "commit",
       "push",
       "branch",
