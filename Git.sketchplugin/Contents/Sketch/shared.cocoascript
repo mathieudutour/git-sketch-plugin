@@ -27,6 +27,26 @@ var shared = {
     data = pipe.fileHandleForReading().readDataToEndOfFile();
     return NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
   },
+  createInput: function(msg, okLabel, cancelLabel) {
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,50));
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,25,300,25));
+    input.editable = true;
+    accessory.addSubview(input);
+
+    var alert = NSAlert.alloc().init();
+    alert.setMessageText(msg);
+    alert.addButtonWithTitle(okLabel || 'OK');
+    alert.addButtonWithTitle(cancelLabel || 'Cancel');
+    alert.setAccessoryView(accessory);
+
+    var responseCode = alert.runModal();
+    var message = input.stringValue();
+
+    return {
+      responseCode: responseCode,
+      message: message,
+    };
+  },
   createInputWithCheckbox: function(msg, checkboxMsg, checked, okLabel, cancelLabel) {
     var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,50));
     var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,25,300,25));
