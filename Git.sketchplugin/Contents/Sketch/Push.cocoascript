@@ -7,7 +7,7 @@ var onRun = function(context) {
   try {
     var path = shared.getCurrentDirectory(doc);
 
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git push -q", path);
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git -c push.default=simple push -q", path);
     var message = shared.exec(command);
     doc.showMessage("Changes pushed");
   } catch (e) {
