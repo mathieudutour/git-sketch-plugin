@@ -15,7 +15,7 @@ From ...
 ![screen cast](example/ScreenCast.gif)
 
 ## Requirements
-* [Sketch](http://sketchapp.com/) >= 3.4 (not with the sandboxed version ie from the App Store).
+* [Sketch](http://sketchapp.com/) >= 3.4 (**not** with the sandboxed version ie from the App Store).
 * [Git](https://git-scm.com/) (coming with OS X so you shouldn't have to do anything)
 
 ## Installation
