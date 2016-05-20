@@ -16,7 +16,7 @@ From ...
 
 ## Requirements
 * [Sketch](http://sketchapp.com/) >= 3.4 (not with the sandboxed version ie from the App Store).
-* [Git](https://git-scm.com/)
+* [Git](https://git-scm.com/) (coming with OS X so you shouldn't have to do anything)
 
 ## Installation
 * [Download](https://github.com/mathieudutour/git-sketch-plugin/archive/master.zip) this repo as a zip
