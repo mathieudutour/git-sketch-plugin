@@ -4,7 +4,7 @@
   "author": "Mathieu Dutour",
   "authorEmail" : "mathieu@dutour.me",
   "homepage": "http://github.com/mathieudutour/git-sketch-plugin",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "identifier": "me.dutour.mathieu.git-plugin",
   "compatibleVersion": 3,
   "bundleVersion": 2,
@@ -54,6 +54,11 @@
       "script": "Init.cocoascript",
     },
     {
+      "name": "Preferences",
+      "identifier": "preferences",
+      "script": "Preferences.cocoascript",
+    },
+    {
       "name": "Open terminal",
       "identifier": "terminal",
       "script": "OpenTerminal.cocoascript",
@@ -66,10 +71,17 @@
       "push",
       "branch",
       "checkout",
-      "export",
-      "add",
-      "init",
-      "terminal"
+      "pull",
+      {
+        "title": "Advanced",
+        "items": [
+          "init",
+          "export",
+          "add",
+          "terminal"
+        ]
+      },
+      "preferences"
     ]
   }
 }

@@ -6,10 +6,10 @@ var onRun = function(context) {
   var doc = context.document;
   try {
     var path = shared.getCurrentDirectory(doc);
-    var branchName = doc.askForUserInput_initialValue_('Branch name', '');
+    var branchName = shared.createInput(context, 'Branch name', 'Create branch');
 
-    if (branchName != null) {
-      var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -qb %@", path, branchName);
+    if (branchName.responseCode === 1000 && branchName.message !== nil) {
+      var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -qb %@", path, branchName.message);
       var message = shared.exec(command);
       doc.showMessage("Switched to a new branch '" + branchName + "'");
     }

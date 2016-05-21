@@ -13,7 +13,7 @@ var onRun = function(context) {
       listBranches.pop();
       var currentBranch = shared.getCurrentBranch(doc);
       var currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
-      var branch = shared.createSelect('Checkout branch', listBranches, currentIndex, 'Checkout');
+      var branch = shared.createSelect(context, 'Checkout branch', listBranches, currentIndex, 'Checkout');
       if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         var selectedBranch = listBranches[branch.index];
         var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -q %@", path, selectedBranch);

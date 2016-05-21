@@ -1,0 +1,45 @@
+// Commits all working file to git (cmd alt ctrl c)
+
+@import 'shared.cocoascript'
+
+var onRun = function(context) {
+  var doc = context.document;
+  try {
+    var preferences = shared.preferences();
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,100));
+    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0,75,300,20));
+    textExport.string = 'Folder where the pretty diffs will be exported';
+    textExport.drawsBackground = false;
+    textExport.editable = false;
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,50,300,25));
+    input.stringValue = preferences.exportFolder;
+    input.editable = true;
+    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0,0,300,25));
+    checkboxDiff.setButtonType(3);
+    checkboxDiff.title = 'Generate pretty diff by default';
+    checkboxDiff.state = preferences.diffByDefault ? 1 : 0;
+    accessory.addSubview(textExport);
+    accessory.addSubview(input);
+    accessory.addSubview(checkboxDiff);
+
+    var alert = NSAlert.alloc().init();
+    alert.setMessageText('Git Plugin Preferences');
+    alert.addButtonWithTitle('Save preferences');
+    alert.addButtonWithTitle('Cancel');
+    alert.setIcon(NSImage.alloc().initWithContentsOfFile(
+      context.plugin.urlForResourceNamed('icon.png').path()));
+    alert.setAccessoryView(accessory);
+
+    var responseCode = alert.runModal();
+    var message = input.stringValue();
+
+    if (responseCode === 1000) {
+      shared.setPreference('exportFolder', message);
+      shared.setPreference('diffByDefault', checkboxDiff.state() == 1);
+      doc.showMessage('Preferences updated');
+    }
+  } catch (e) {
+    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+    throw e;
+  }
+}

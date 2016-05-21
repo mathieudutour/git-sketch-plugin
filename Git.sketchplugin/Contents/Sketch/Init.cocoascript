@@ -10,7 +10,7 @@ var onRun = function(context) {
     var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git init && git add \"%@\"", path, currentFileName);
     var message = shared.exec(command);
     doc.showMessage(message);
-    var remoteURL = shared.createInput('URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now');
+    var remoteURL = shared.createInput(context, 'URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now');
 
     if (remoteURL.responseCode === 1000 && remoteURL.message !== nil) {
       var command = NSString.stringWithFormat("\\cd \"%@\" && \\git remote add origin %@; \\exit", path, remoteURL.message);
