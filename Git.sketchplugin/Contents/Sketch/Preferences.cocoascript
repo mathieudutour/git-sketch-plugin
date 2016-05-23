@@ -6,21 +6,34 @@ var onRun = function(context) {
   var doc = context.document;
   try {
     var preferences = shared.preferences();
-    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,100));
-    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0,75,300,20));
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,200));
+
+    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0,175,300,20));
     textExport.string = 'Folder where the pretty diffs will be exported';
     textExport.drawsBackground = false;
     textExport.editable = false;
-    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,50,300,25));
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,150,300,25));
     input.stringValue = preferences.exportFolder;
     input.editable = true;
-    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0,0,300,25));
+
+    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0,100,300,25));
     checkboxDiff.setButtonType(3);
     checkboxDiff.title = 'Generate pretty diff by default';
     checkboxDiff.state = preferences.diffByDefault ? 1 : 0;
+
+    var textTerminal = NSTextView.alloc().initWithFrame(NSMakeRect(0,50,300,20));
+    textTerminal.string = 'Terminal App';
+    textTerminal.drawsBackground = false;
+    textTerminal.editable = false;
+    var select = NSComboBox.alloc().initWithFrame(NSMakeRect(0,25,300,25));
+    select.addItemsWithObjectValues(['Terminal', 'iTerm']);
+    select.selectItemAtIndex(preferences.terminal == 'iTerm' ? 1 : 0);
+
     accessory.addSubview(textExport);
     accessory.addSubview(input);
     accessory.addSubview(checkboxDiff);
+    accessory.addSubview(textTerminal);
+    accessory.addSubview(select);
 
     var alert = NSAlert.alloc().init();
     alert.setMessageText('Git Plugin Preferences');
@@ -36,6 +49,7 @@ var onRun = function(context) {
     if (responseCode === 1000) {
       shared.setPreference('exportFolder', message);
       shared.setPreference('diffByDefault', checkboxDiff.state() == 1);
+      shared.setPreference('terminal', select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal');
       doc.showMessage('Preferences updated');
     }
   } catch (e) {

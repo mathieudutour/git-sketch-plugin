@@ -5,9 +5,6 @@
 var onRun = function(context) {
   var doc = context.document;
   var path = shared.getCurrentDirectory(doc);
-  try {
-    NSWorkspace.sharedWorkspace().openFile_withApplication_(path, @"iTerm");
-  } catch () {
-    NSWorkspace.sharedWorkspace().openFile_withApplication_(path, @"Terminal");
-  }
+  var preferences = shared.preferences();
+  NSWorkspace.sharedWorkspace().openFile_withApplication_(path, preferences.terminal);
 }

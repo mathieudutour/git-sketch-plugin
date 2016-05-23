@@ -5,19 +5,24 @@ function setIconForAlert(context, alert) {
     context.plugin.urlForResourceNamed('icon.png').path()));
 }
 
+var keyPref = 'gitSketch';
+
 function getUserPreferences() {
   var exportFolder = '.exportedArtboards';
+  var terminal = 'Terminal';
   var diffByDefault = true;
   try {
     var prefs = NSUserDefaults.standardUserDefaults();
-    exportFolder = prefs.stringForKey('exportFolder') || '.exportedArtboards';
-    diffByDefault = prefs.boolForKey('diffByDefault');
+    exportFolder = prefs.stringForKey(keyPref + 'exportFolder') || '.exportedArtboards';
+    terminal = prefs.stringForKey(keyPref + 'terminal') || 'Terminal';
+    diffByDefault = prefs.boolForKey(keyPref + 'diffByDefault');
   } catch (e) {
     log(e);
   }
   return {
     exportFolder: exportFolder,
     diffByDefault: diffByDefault,
+    terminal: terminal,
   }
 }
 
@@ -145,6 +150,7 @@ var shared = {
   },
   preferences: getUserPreferences,
   setPreference: function(key, value) {
+    key = keyPref + key;
     if (typeof value === "boolean") {
       [[NSUserDefaults standardUserDefaults] setBool:value forKey:key]
     } else {
