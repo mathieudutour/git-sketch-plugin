@@ -65,7 +65,7 @@ Start by enabling LFS for your repo:
 Client                       | Command
 :----------------------------|:------------------------------------------
  Commit                      | `git commit -m 'message' -a`
- Push                        | `git -c push.default=simple push -q`
+ Push                        | `git -c push.default=current push -q`
  New Branch                  | `git checkout -qb branchName`
  Switch Branch               | `git checkout -q branchName`
  Pull                        | `git pull`
