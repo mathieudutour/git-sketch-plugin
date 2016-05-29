@@ -5,15 +5,14 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var path = shared.getCurrentDirectory(doc);
     var currentFileName = shared.getCurrentFileName(doc);
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git init && git add \"%@\"", path, currentFileName);
+    var command = "git init && git add \"" + currentFileName + "\"";
     var message = shared.exec(command);
     doc.showMessage(message);
     var remoteURL = shared.createInput(context, 'URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now');
 
     if (remoteURL.responseCode === 1000 && remoteURL.message !== nil) {
-      var command = NSString.stringWithFormat("\\cd \"%@\" && \\git remote add origin %@; \\exit", path, remoteURL.message);
+      var command = "git remote add origin " + remoteURL.message + "; exit";
       var message = shared.exec(command);
       doc.showMessage(message.split('\n').join(' '));
     }

@@ -5,10 +5,7 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var path = shared.getCurrentDirectory(doc);
-
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git -c push.default=current push -q", path);
-    var message = shared.exec(command);
+    var message = shared.exec("git -c push.default=current push -q");
     doc.showMessage("Changes pushed");
   } catch (e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");

@@ -5,7 +5,6 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var path = shared.getCurrentDirectory(doc);
     var currentBranch = shared.getCurrentBranch(doc);
     var commitMsg = shared.createInputWithCheckbox(context, 'Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', shared.preferences().diffByDefault, 'Commit');
 
@@ -13,7 +12,7 @@ var onRun = function(context) {
       if (commitMsg.checked) {
         shared.exportArtboards(doc);
       }
-      var command = NSString.stringWithFormat("\\cd \"%@\" && \\git commit -m '%@' -a; \\exit", path, commitMsg.message);
+      var command = "git commit -m '" + commitMsg.message + "' -a; \\exit";
       var message = shared.exec(command);
       doc.showMessage(message.split('\n').join(' '));
     }

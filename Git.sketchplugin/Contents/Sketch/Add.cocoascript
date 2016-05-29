@@ -5,9 +5,8 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var path = shared.getCurrentDirectory(doc);
     var currentFileName = shared.getCurrentFileName(doc);
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git add \"%@\"", path, currentFileName);
+    var command = "git add \"" + currentFileName + "\"";
     var message = shared.exec(command);
     doc.showMessage("File added to git");
   } catch(e) {

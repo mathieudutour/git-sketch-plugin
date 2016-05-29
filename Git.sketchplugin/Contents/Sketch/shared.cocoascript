@@ -31,6 +31,9 @@ function exec(command) {
   var pipe = NSPipe.pipe();
   var errPipe = NSPipe.pipe();
 
+  var path = getCurrentDirectory(doc);
+  command = "cd \"" + path + "\" && " + command;
+
   task.setLaunchPath_(@"/bin/bash");
   task.setArguments_(NSArray.arrayWithObjects_("-c", "-l", command, nil));
   task.setStandardOutput_(pipe);
@@ -107,7 +110,7 @@ var shared = {
       checked: checkbox.state() == 1
     };
   },
-  createSelect: function(msg, items, selectedItemIndex, okLabel, cancelLabel) {
+  createSelect: function(context, msg, items, selectedItemIndex, okLabel, cancelLabel) {
     selectedItemIndex = selectedItemIndex || 0;
 
     var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25));

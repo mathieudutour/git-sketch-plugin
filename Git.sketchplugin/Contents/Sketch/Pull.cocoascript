@@ -1,14 +1,11 @@
-// Push (cmd alt ctrl p)
+// Pull
 
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var path = shared.getCurrentDirectory(doc);
-
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git pull -q", path);
-    var message = shared.exec(command);
+    var message = shared.exec("git pull -q");
     doc.showMessage("Changes pulled");
   } catch (e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");

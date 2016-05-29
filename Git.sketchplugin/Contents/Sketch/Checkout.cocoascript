@@ -5,18 +5,17 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var path = shared.getCurrentDirectory(doc);
-    var listBranchesCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git branch | awk -F ' +' '! /\(no branch\)/ {print $2}'", path);
+    var listBranchesCommand = "git for-each-ref --format='%(refname:short)' refs/heads/";;
     var listBranches = shared.exec(listBranchesCommand);
     if (listBranches != null && listBranches !== '') {
       listBranches = listBranches.split('\n');
-      listBranches.pop();
+      listBranches.pop(); // last item is always an empty string
       var currentBranch = shared.getCurrentBranch(doc);
       var currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
       var branch = shared.createSelect(context, 'Checkout branch', listBranches, currentIndex, 'Checkout');
       if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         var selectedBranch = listBranches[branch.index];
-        var command = NSString.stringWithFormat_("\\cd \"%@\" && \\git checkout -q %@", path, selectedBranch);
+        var command = "git checkout -q " + selectedBranch;
         var message = shared.exec(command);
         var app = NSApp.delegate();
         app.refreshCurrentDocument();
