@@ -137,7 +137,7 @@ var shared = {
     var currentBranchCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git rev-parse --abbrev-ref HEAD", path);
     var branch;
     try {
-      branch = exec(currentBranchCommand).split('\n')[0];
+      branch = exec(doc, currentBranchCommand).split('\n')[0];
     } catch (e) {
       branch = 'master';
     }
@@ -149,7 +149,7 @@ var shared = {
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
     var preferences = getUserPreferences();
     var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p \"%@\" && rm -rf \"%@/%@\" && mkdir \"%@/%@\" && %@/Contents/Resources/sketchtool/bin/sketchtool export artboards \"%@\" --output=\"%@/%@\" --overwriting=YES && git add \"%@\"", path, preferences.exportFolder, preferences.exportFolder, currentFileNameWithoutExtension, preferences.exportFolder, currentFileNameWithoutExtension, [[NSBundle mainBundle] bundlePath], currentFileName, preferences.exportFolder, currentFileNameWithoutExtension, preferences.exportFolder);
-    return exec(command);
+    return exec(doc, command);
   },
   preferences: getUserPreferences,
   setPreference: function(key, value) {
