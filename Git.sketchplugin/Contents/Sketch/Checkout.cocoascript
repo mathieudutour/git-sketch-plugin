@@ -6,7 +6,7 @@ var onRun = function(context) {
   var doc = context.document;
   try {
     var listBranchesCommand = "git for-each-ref --format='%(refname:short)' refs/heads/";;
-    var listBranches = shared.exec(listBranchesCommand);
+    var listBranches = shared.exec(doc, listBranchesCommand);
     if (listBranches != null && listBranches !== '') {
       listBranches = listBranches.split('\n');
       listBranches.pop(); // last item is always an empty string
@@ -16,7 +16,7 @@ var onRun = function(context) {
       if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         var selectedBranch = listBranches[branch.index];
         var command = "git checkout -q " + selectedBranch;
-        var message = shared.exec(command);
+        var message = shared.exec(doc, command);
         var app = NSApp.delegate();
         app.refreshCurrentDocument();
         doc.showMessage("Switched to branch '" + selectedBranch + "'");

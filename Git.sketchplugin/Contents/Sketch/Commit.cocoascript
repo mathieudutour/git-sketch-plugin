@@ -13,7 +13,7 @@ var onRun = function(context) {
         shared.exportArtboards(doc);
       }
       var command = "git commit -m '" + commitMsg.message + "' -a; \\exit";
-      var message = shared.exec(command);
+      var message = shared.exec(doc, command);
       doc.showMessage(message.split('\n').join(' '));
     }
   } catch (e) {

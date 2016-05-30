@@ -9,7 +9,7 @@ var onRun = function(context) {
 
     if (branchName.responseCode === 1000 && branchName.message !== nil) {
       var command = "git checkout -qb " + branchName.message;
-      var message = shared.exec(command);
+      var message = shared.exec(doc, command);
       doc.showMessage("Switched to a new branch '" + branchName + "'");
     }
   } catch (e) {

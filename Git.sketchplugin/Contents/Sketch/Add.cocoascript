@@ -7,7 +7,7 @@ var onRun = function(context) {
   try {
     var currentFileName = shared.getCurrentFileName(doc);
     var command = "git add \"" + currentFileName + "\"";
-    var message = shared.exec(command);
+    var message = shared.exec(doc, command);
     doc.showMessage("File added to git");
   } catch(e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");

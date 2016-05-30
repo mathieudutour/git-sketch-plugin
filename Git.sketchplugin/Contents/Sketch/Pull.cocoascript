@@ -5,7 +5,7 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var message = shared.exec("git pull -q");
+    var message = shared.exec(doc, "git pull -q");
     doc.showMessage("Changes pulled");
   } catch (e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");

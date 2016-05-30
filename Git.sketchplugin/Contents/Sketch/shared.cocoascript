@@ -26,7 +26,7 @@ function getUserPreferences() {
   }
 }
 
-function exec(command) {
+function exec(doc, command) {
   var task = NSTask.alloc().init();
   var pipe = NSPipe.pipe();
   var errPipe = NSPipe.pipe();

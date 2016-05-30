@@ -5,7 +5,7 @@
 var onRun = function(context) {
   var doc = context.document;
   try {
-    var message = shared.exec("git -c push.default=current push -q");
+    var message = shared.exec(doc, "git -c push.default=current push -q");
     doc.showMessage("Changes pushed");
   } catch (e) {
     NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
