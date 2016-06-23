@@ -12,7 +12,7 @@ var onRun = function(context) {
       if (commitMsg.checked) {
         shared.exportArtboards(doc);
       }
-      var command = "git commit -m '" + commitMsg.message + "' -a; \\exit";
+      var command = "git commit -m \"" + commitMsg.message.replace(/"/g, '\\"') + "\" -a; \\exit";
       var message = shared.exec(doc, command);
       doc.showMessage(message.split('\n').join(' '));
     }
