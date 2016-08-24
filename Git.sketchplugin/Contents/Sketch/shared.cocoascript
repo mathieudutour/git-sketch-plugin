@@ -143,12 +143,14 @@ var shared = {
     }
     return branch;
   },
-  exportArtboards: function(doc) {
+  exportArtboards: function(doc, scriptPath) {
     var path = getCurrentDirectory(doc);
     var currentFileName = getCurrentFileName(doc);
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
     var preferences = getUserPreferences();
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p \"%@\" && rm -rf \"%@/%@\" && mkdir \"%@/%@\" && %@/Contents/Resources/sketchtool/bin/sketchtool export artboards \"%@\" --output=\"%@/%@\" --overwriting=YES && git add \"%@\"", path, preferences.exportFolder, preferences.exportFolder, currentFileNameWithoutExtension, preferences.exportFolder, currentFileNameWithoutExtension, [[NSBundle mainBundle] bundlePath], currentFileName, preferences.exportFolder, currentFileNameWithoutExtension, preferences.exportFolder);
+    var pluginPath = [NSString stringWithFormat:@'%@', scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(' ', '\\ ')];
+    var fileFolder = preferences.exportFolder + '/' + currentFileNameWithoutExtension
+    var command = NSString.stringWithFormat_("\\%@exportArtboard.sh \"%@\" \"%@\" \"%@\" \"%@\" \"%@\"", pluginPath, path, preferences.exportFolder, fileFolder, [[NSBundle mainBundle] bundlePath], currentFileName);
     return exec(doc, command);
   },
   preferences: getUserPreferences,

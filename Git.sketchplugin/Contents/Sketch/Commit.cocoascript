@@ -8,9 +8,9 @@ var onRun = function(context) {
     var currentBranch = shared.getCurrentBranch(doc);
     var commitMsg = shared.createInputWithCheckbox(context, 'Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', shared.preferences().diffByDefault, 'Commit');
 
-    if (commitMsg.responseCode === 1000 && commitMsg.message !== nil) {
+    if (commitMsg.responseCode == 1000 && commitMsg.message != nil) {
       if (commitMsg.checked) {
-        shared.exportArtboards(doc);
+        shared.exportArtboards(doc, context.scriptPath);
       }
       var command = "git commit -m \"" + commitMsg.message.split('"').join('\\"') + "\" -a; \\exit";
       var message = shared.exec(doc, command);
