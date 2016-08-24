@@ -7,13 +7,13 @@ var onRun = function(context) {
   try {
     var listBranchesCommand = "git for-each-ref --format='%(refname:short)' refs/heads/";;
     var listBranches = shared.exec(doc, listBranchesCommand);
-    if (listBranches != null && listBranches !== '') {
+    if (listBranches != null && listBranches != '') {
       listBranches = listBranches.split('\n');
       listBranches.pop(); // last item is always an empty string
       var currentBranch = shared.getCurrentBranch(doc);
-      var currentIndex = listBranches.indexOf(currentBranch) === -1 ? 0 : listBranches.indexOf(currentBranch);
+      var currentIndex = listBranches.indexOf(currentBranch) == -1 ? 0 : listBranches.indexOf(currentBranch);
       var branch = shared.createSelect(context, 'Checkout branch', listBranches, currentIndex, 'Checkout');
-      if (branch.responseCode === 1000 && branch.index >= 0 && branch.index < listBranches.length) {
+      if (branch.responseCode == 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         var selectedBranch = listBranches[branch.index];
         var command = "git checkout -q " + selectedBranch;
         var message = shared.exec(doc, command);

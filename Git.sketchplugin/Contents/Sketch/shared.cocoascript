@@ -148,7 +148,8 @@ var shared = {
     var currentFileName = getCurrentFileName(doc);
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
     var preferences = getUserPreferences();
-    var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p \"%@\" && rm -rf \"%@/%@\" && mkdir \"%@/%@\" && %@/Contents/Resources/sketchtool/bin/sketchtool export artboards \"%@\" --output=\"%@/%@\" --overwriting=YES && git add \"%@\"", path, preferences.exportFolder, preferences.exportFolder, currentFileNameWithoutExtension, preferences.exportFolder, currentFileNameWithoutExtension, [[NSBundle mainBundle] bundlePath], currentFileName, preferences.exportFolder, currentFileNameWithoutExtension, preferences.exportFolder);
+    var fileFolder = '"' + preferences.exportFolder + '/' + currentFileNameWithoutExtension + '"'
+    var command = NSString.stringWithFormat_("\\cd \"%@\" && mkdir -p \"%@\" && rm -rf %@ && mkdir %@ && %@/Contents/Resources/sketchtool/bin/sketchtool export artboards \"%@\" --output=%@ --overwriting=YES && git add \"%@\"", path, preferences.exportFolder, fileFolder, fileFolder, [[NSBundle mainBundle] bundlePath], currentFileName, fileFolder, preferences.exportFolder);
     return exec(doc, command);
   },
   preferences: getUserPreferences,
