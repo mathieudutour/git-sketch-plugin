@@ -5,6 +5,7 @@ EXPORT_FOLDER="$2"
 FILE_FOLDER="$3"
 BUNDLE_PATH="$4"
 FILENAME="$5"
+SCALE="$6"
 
 
 cd "$DIR_PATH"
@@ -16,7 +17,7 @@ mv "$FILE_FOLDER" .oldArtboards 2>/dev/null
 
 # generate new artboards
 mkdir -p "$FILE_FOLDER"
-$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --output="$FILE_FOLDER" --overwriting=YES
+$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES
 
 # compare new artboards with the old ones
 for artboardPath in "$FILE_FOLDER"/*

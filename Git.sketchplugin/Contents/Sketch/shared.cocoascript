@@ -9,11 +9,13 @@ var keyPref = 'gitSketch';
 
 function getUserPreferences() {
   var exportFolder = '.exportedArtboards';
+  var exportScale = '1.0';
   var terminal = 'Terminal';
   var diffByDefault = true;
   try {
     var prefs = NSUserDefaults.standardUserDefaults();
     exportFolder = prefs.stringForKey(keyPref + 'exportFolder') || '.exportedArtboards';
+    exportScale = prefs.stringForKey(keyPref + 'exportScale') || '1.0';
     terminal = prefs.stringForKey(keyPref + 'terminal') || 'Terminal';
     diffByDefault = prefs.boolForKey(keyPref + 'diffByDefault');
   } catch (e) {
@@ -21,6 +23,7 @@ function getUserPreferences() {
   }
   return {
     exportFolder: exportFolder,
+    exportScale: exportScale,
     diffByDefault: diffByDefault,
     terminal: terminal,
   }
@@ -150,7 +153,7 @@ var shared = {
     var preferences = getUserPreferences();
     var pluginPath = [NSString stringWithFormat:@'%@', scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(' ', '\\ ')];
     var fileFolder = preferences.exportFolder + '/' + currentFileNameWithoutExtension
-    var command = NSString.stringWithFormat_("\\%@exportArtboard.sh \"%@\" \"%@\" \"%@\" \"%@\" \"%@\"", pluginPath, path, preferences.exportFolder, fileFolder, [[NSBundle mainBundle] bundlePath], currentFileName);
+    var command = NSString.stringWithFormat_("\\%@exportArtboard.sh \"%@\" \"%@\" \"%@\" \"%@\" \"%@\" \"%@\"", pluginPath, path, preferences.exportFolder, fileFolder, [[NSBundle mainBundle] bundlePath], currentFileName, preferences.exportScale);
     return exec(doc, command);
   },
   preferences: getUserPreferences,

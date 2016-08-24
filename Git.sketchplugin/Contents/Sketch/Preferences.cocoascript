@@ -6,15 +6,23 @@ var onRun = function(context) {
   var doc = context.document;
   try {
     var preferences = shared.preferences();
-    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,200));
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,250));
 
-    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0,175,300,20));
+    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0,225,300,20));
     textExport.string = 'Folder where the pretty diffs will be exported';
     textExport.drawsBackground = false;
     textExport.editable = false;
-    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,150,300,25));
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,200,300,25));
     input.stringValue = preferences.exportFolder;
     input.editable = true;
+
+    var scaleExport = NSTextView.alloc().initWithFrame(NSMakeRect(0,175,300,20));
+    scaleExport.string = 'Scale of the exported artboards';
+    scaleExport.drawsBackground = false;
+    scaleExport.editable = false;
+    var inputScale = NSTextField.alloc().initWithFrame(NSMakeRect(0,150,300,25));
+    inputScale.stringValue = preferences.exportScale;
+    inputScale.editable = true;
 
     var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0,100,300,25));
     checkboxDiff.setButtonType(3);
@@ -31,6 +39,8 @@ var onRun = function(context) {
 
     accessory.addSubview(textExport);
     accessory.addSubview(input);
+    accessory.addSubview(scaleExport);
+    accessory.addSubview(inputScale);
     accessory.addSubview(checkboxDiff);
     accessory.addSubview(textTerminal);
     accessory.addSubview(select);
@@ -45,9 +55,11 @@ var onRun = function(context) {
 
     var responseCode = alert.runModal();
     var message = input.stringValue();
+    var scale = inputScale.stringValue();
 
     if (responseCode === 1000) {
       shared.setPreference('exportFolder', message);
+      shared.setPreference('exportScale', scale);
       shared.setPreference('diffByDefault', checkboxDiff.state() == 1);
       shared.setPreference('terminal', select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal');
       doc.showMessage('Preferences updated');
