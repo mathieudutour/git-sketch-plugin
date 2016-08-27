@@ -2,6 +2,7 @@
 
 git-sketch-plugin
 =========
+[![GitHub release](https://img.shields.io/github/release/mathieudutour/git-sketch-plugin.svg?maxAge=2592000)](https://github.com/mathieudutour/git-sketch-plugin/releases) [![tips](https://img.shields.io/badge/tips-buy%20me%20a%20coffee-brightgreen.svg)](https://www.paypal.me/mathieudutour)
 
  A Git client built right into [Sketch](http://www.bohemiancoding.com/sketch). Generate [pretty diffs](https://github.com/mathieudutour/git-sketch-plugin/pull/1/files) so that everybody knows what are the changes!
 
@@ -72,6 +73,9 @@ Client                       | Command
  Add file to git             | `git add currentFile`
  Init Git repo               | `git init && git add currentFile`
 
+## Want to contribute?
+
+Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
 
 ## License
 
