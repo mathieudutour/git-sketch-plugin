@@ -1,0 +1,134 @@
+// Check for update
+
+function getReleaseNotes() {
+  var url = NSURL.URLWithString('https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/CHANGELOG.md');
+
+  var request = NSMutableURLRequest.requestWithURL_cachePolicy_timeoutInterval(url, NSURLRequestReloadIgnoringCacheData, 30);
+  request.setHTTPMethod('GET')
+
+  var response = nil;
+  var error = nil;
+  var data = NSURLConnection.sendSynchronousRequest_returningResponse_error(request, response, error);
+
+  if (error == nil && data != nil) {
+    var res = NSString.alloc().initWithData_encoding(data, NSUTF8StringEncoding);
+    return res
+  }
+}
+
+function getNewestVersionNumber() {
+  var url = NSURL.URLWithString('https://raw.githubusercontent.com/mathieudutour/git-sketch-plugin/master/Git.sketchplugin/Contents/Sketch/manifest.json');
+
+  var request = NSMutableURLRequest.requestWithURL_cachePolicy_timeoutInterval(url, NSURLRequestReloadIgnoringCacheData, 30);
+  request.setHTTPMethod('GET')
+
+  var response = nil;
+  var error = nil;
+  var data = NSURLConnection.sendSynchronousRequest_returningResponse_error(request, response, error);
+
+  if (error == nil && data != nil) {
+    var errorJson;
+    var res = NSJSONSerialization.JSONObjectWithData_options_error(data, NSJSONReadingMutableLeaves, errorJson);
+
+    if (errorJson == nil) {
+      if (res.version) {
+        return res.version
+      }
+      return false;
+    }
+    return false;
+  }
+}
+
+function getManifestVersion(context) {
+  var scriptFullPath = context.scriptPath
+  var directoryPlugin = scriptFullPath.stringByDeletingLastPathComponent()
+  var manifestFile = directoryPlugin + "/manifest.json"
+
+  var fileManager = NSFileManager.defaultManager()
+  if (fileManager.fileExistsAtPath(manifestFile)) {
+    var fetchData = NSData.dataWithContentsOfFile(manifestFile)
+    if (fetchData) {
+      var error;
+      var res = NSJSONSerialization.JSONObjectWithData_options_error(fetchData, NSJSONReadingMutableLeaves, error)
+
+      if(error == nil && res != nil){
+        return res.version.toString()
+      } else {
+        log("error " + error);
+        return false
+      }
+    }
+    log("Could not get manifest file data");
+    return false
+  }
+  return false
+}
+
+function isNewUpdate(newestVersion, pluginVersion) {
+  return newestVersion && pluginVersion && newestVersion != pluginVersion;
+}
+
+var onOpenDocument = function(context) {
+  var prefs = NSUserDefaults.standardUserDefaults();
+  lastCheck = prefs.stringForKey('git-update-last-check')
+  var timestamp = (new Date()).getTime()
+  if (lastCheck && lastCheck + (24 * 60 * 60 * 1000) > timestamp) {
+    return // skip until next day
+  }
+
+  var newestVersion = getNewestVersionNumber()
+  var pluginVersion = getManifestVersion(context)
+
+  if (isNewUpdate(newestVersion, pluginVersion)) {
+    var releaseNotes = getReleaseNotes()
+
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,250));
+
+    var title = NSTextView.alloc().initWithFrame(NSMakeRect(0,225,300,20));
+    title.string = 'Version ' + newestVersion + ' is available (current version: ' + pluginVersion + ')';
+    title.drawsBackground = false;
+    title.editable = false;
+
+    var scroll = NSScrollView.alloc().initWithFrame(NSMakeRect(0,25,300,200));
+    var contentSize = scroll.contentSize();
+
+    scroll.setBorderType(NSNoBorder);
+    scroll.setHasVerticalScroller(true);
+    scroll.setHasHorizontalScroller(false);
+    var release = NSTextView.alloc().initWithFrame(NSMakeRect(0, 0, contentSize.width, contentSize.height));
+    release.setMinSize(NSMakeSize(0.0, contentSize.height));
+    // release.setMaxSize(NSMakeSize(FLT_MAX, FLT_MAX));
+    release.setVerticallyResizable(true);
+    release.setHorizontallyResizable(false);
+    release.setAutoresizingMask(NSViewWidthSizable);
+
+    // release.textContainer().setContainerSize(NSMakeSize(contentSize.width, FLT_MAX));
+    release.textContainer().setWidthTracksTextView(true);
+    release.string = releaseNotes;
+    release.drawsBackground = true;
+    release.editable = false;
+
+    scroll.setDocumentView(release);
+
+    accessory.addSubview(title);
+    accessory.addSubview(scroll);
+
+    var alert = NSAlert.alloc().init();
+    alert.setMessageText('A new Git plugin version is available!');
+    alert.addButtonWithTitle('Download update');
+    alert.addButtonWithTitle('Remind me later');
+    alert.setIcon(NSImage.alloc().initWithContentsOfFile(
+      context.plugin.urlForResourceNamed('icon.png').path()));
+    alert.setAccessoryView(accessory);
+
+    var responseCode = alert.runModal();
+
+    if(responseCode == 1000){
+      var url = NSURL.URLWithString("https://github.com/mathieudutour/git-sketch-plugin/releases/latest")
+      NSWorkspace.sharedWorkspace().openURL(url);
+    } else {
+      [[NSUserDefaults standardUserDefaults] setObject:timestamp forKey:'git-update-last-check']
+    }
+  }
+}
