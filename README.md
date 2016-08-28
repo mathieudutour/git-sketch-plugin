@@ -30,7 +30,3 @@ For a Getting started guide, FAQ, etc. check out our [docs](https://github.com/m
 ## Want to contribute?
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
-
-## License
-
-MIT
