@@ -1,5 +1,9 @@
 # FAQ
 
+## What exactly are the pretty diffs?
+The plugin is generating one png per artboard, independently of wether they are in the same page or not. Just be careful if some of your artboards have the same name (only the last one will be generated).
+Those generated images are in a hidden folder and Github will pick them up to show the changes between commits ([example](https://github.com/mathieudutour/git-sketch-plugin/pull/1/files))
+
 ## [Can two people work on the same file at the same time?](https://github.com/mathieudutour/git-sketch-plugin/issues/42)
 
 Because the sketch format is a binary, there is no way to know what has changed. Hence it is not possible to merge the changes made on the same file.
