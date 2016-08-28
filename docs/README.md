@@ -1,6 +1,7 @@
 # documentation
 
-* [Getting Started](getting-started.md) - How to get going with the git sketch puglin
+* [Getting Started](getting-started.md) - How to get going with the git sketch plugin
+* [Keyboard Shortcut](keyboard-shortcut.md) - How not to waste time in menus
 * [Enabling Git LFS](git-lfs.md) - How to maintain a healthy git repository
 
 
