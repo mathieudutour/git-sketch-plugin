@@ -1,6 +1,7 @@
 # documentation
 
-* [Getting Started](getting-started.md) - How to get going with gulp
+* [Getting Started](getting-started.md) - How to get going with the git sketch puglin
+* [Enabling Git LFS](git-lfs.md) - How to maintain a healthy git repository
 
 
 ## FAQ
