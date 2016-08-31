@@ -1,3 +1,5 @@
-ignored
+Page 1/ignored
 
-ignored-regex-(.*)
+Page 1/ignored-regex-(.*)
+
+Ignored page/(.*)

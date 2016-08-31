@@ -4,7 +4,7 @@
   "author": "Mathieu Dutour",
   "authorEmail" : "mathieu@dutour.me",
   "homepage": "http://github.com/mathieudutour/git-sketch-plugin",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "identifier": "me.dutour.mathieu.git-plugin",
   "compatibleVersion": 3,
   "bundleVersion": 2,

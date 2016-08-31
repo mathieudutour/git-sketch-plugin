@@ -1,3 +1,7 @@
+## [0.7.0] - 2016-08-31
+
+* add option to exclude entire pages from pretty diffs
+
 
 ## [0.6.0] - 2016-08-27
 

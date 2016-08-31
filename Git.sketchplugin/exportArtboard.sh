@@ -19,17 +19,7 @@ mv "$FILE_FOLDER" .oldArtboards 2>/dev/null
 IGNORE=$([ -e .sketchignore ] && (cat .sketchignore | sed '/^$/d' | sed 's/^/^/' | sed 's/$/$/' | tr '\n' ',') || echo "")
 
 # get list of artboard names to export
-ARTBOARDS=$($BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" | grep -Eo '"name" :.*?[^\\]",' | cut -d '"' -f 4 | awk '{ N = split("'"$IGNORE"'", ignore, ",");
-  if (N == 0) {
-    print $0
-  }
-  for (i=1; i<=N; i++)
-    if (ignore[i] && $0 ~ ignore[i]) {
-      break
-    } else if (i == N) {
-      print $0
-    }
-}' | tr '\n' ',')
+ARTBOARDS=$($BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
 
 
 # generate new artboards
