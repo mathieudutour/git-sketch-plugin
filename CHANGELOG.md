@@ -1,3 +1,9 @@
+## [0.7.1] - 2016-09-01
+
+* check if a file is open and send a helpful message if not
+* add a button to report the issue when one happens
+
+
 ## [0.7.0] - 2016-08-31
 
 * add option to exclude entire pages from pretty diffs
