@@ -29,12 +29,12 @@ function getUserPreferences() {
   }
 }
 
-function exec(doc, command) {
+function exec(context, command) {
   var task = NSTask.alloc().init();
   var pipe = NSPipe.pipe();
   var errPipe = NSPipe.pipe();
 
-  var path = getCurrentDirectory(doc);
+  var path = getCurrentDirectory(context);
   command = "cd \"" + path + "\" && " + command;
 
   task.setLaunchPath_(@"/bin/bash");
@@ -53,12 +53,12 @@ function exec(doc, command) {
   return NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding);
 }
 
-function getCurrentDirectory(doc) {
-  return doc.fileURL().URLByDeletingLastPathComponent().path();
+function getCurrentDirectory(context) {
+  return context.document.fileURL().URLByDeletingLastPathComponent().path();
 }
 
-function getCurrentFileName(doc) {
-  return doc.fileURL().lastPathComponent();
+function getCurrentFileName(context) {
+  return context.document.fileURL().lastPathComponent();
 }
 
 var shared = {
@@ -155,7 +155,7 @@ var shared = {
       } catch (e) {
         errorString = error
       }
-      var urlString = "https://github.com/mathieudutour/git-sketch-plugin/issues/new?body=" + encodeURIComponent('### How did it happen?\n\n\n### Error log\n\n```\n' + errorString + '\n```')
+      var urlString = "https://github.com/mathieudutour/git-sketch-plugin/issues/new?body=" + encodeURIComponent('### How did it happen?\n1.\n2.\n3.\n\n\n### Error log\n\n```\n' + errorString + '\n```')
       var url = NSURL.URLWithString(urlString)
       NSWorkspace.sharedWorkspace().openURL(url);
     }
@@ -164,26 +164,26 @@ var shared = {
       responseCode: responseCode,
     };
   },
-  getCurrentBranch: function(doc) {
-    var path = getCurrentDirectory(doc);
+  getCurrentBranch: function(context) {
+    var path = getCurrentDirectory(context);
     var currentBranchCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git rev-parse --abbrev-ref HEAD", path);
     var branch;
     try {
-      branch = exec(doc, currentBranchCommand).split('\n')[0];
+      branch = exec(context, currentBranchCommand).split('\n')[0];
     } catch (e) {
       branch = 'master';
     }
     return branch;
   },
-  exportArtboards: function(doc, scriptPath) {
-    var path = getCurrentDirectory(doc);
-    var currentFileName = getCurrentFileName(doc);
+  exportArtboards: function(context) {
+    var currentFileName = getCurrentFileName(context);
+    var path = getCurrentDirectory(context);
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
     var preferences = getUserPreferences();
-    var pluginPath = [NSString stringWithFormat:@'%@', scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(' ', '\\ ')];
+    var pluginPath = [NSString stringWithFormat:@'%@', context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(' ', '\\ ')];
     var fileFolder = preferences.exportFolder + '/' + currentFileNameWithoutExtension
     var command = NSString.stringWithFormat_("\\%@exportArtboard.sh \"%@\" \"%@\" \"%@\" \"%@\" \"%@\" \"%@\"", pluginPath, path, preferences.exportFolder, fileFolder, [[NSBundle mainBundle] bundlePath], currentFileName, preferences.exportScale);
-    return exec(doc, command);
+    return exec(context, command);
   },
   preferences: getUserPreferences,
   setPreference: function(key, value) {
@@ -194,5 +194,15 @@ var shared = {
       [[NSUserDefaults standardUserDefaults] setObject:value forKey:key]
     }
     [[NSUserDefaults standardUserDefaults] synchronize]
+  },
+  checkForFile: function(context) {
+    try {
+      getCurrentFileName(context)
+      getCurrentDirectory(context)
+      return true
+    } catch (e) {
+      shared.createFailAlert(context, 'Missing file', 'You need to open a sketch file before doing that')
+      return false
+    }
   }
 };

@@ -3,12 +3,14 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
+  if (!shared.checkForFile(context)) { return }
   try {
-    var currentFileName = shared.getCurrentFileName(doc);
-    var command = "git add \"" + currentFileName + "\"";
-    var message = shared.exec(doc, command);
-    doc.showMessage("File added to git");
+    var currentFileName = shared.getCurrentFileName(context);
+    if (currentFileName) {
+      var command = "git add \"" + currentFileName + "\"";
+      var message = shared.exec(context, command);
+      context.document.showMessage("File added to git");
+    }
   } catch(e) {
     shared.createFailAlert(context, "Failed...", e, true)
   }

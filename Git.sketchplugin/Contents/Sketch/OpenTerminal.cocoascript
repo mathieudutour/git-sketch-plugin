@@ -3,8 +3,7 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
-  var path = shared.getCurrentDirectory(doc);
+  var path = shared.getCurrentDirectory(context);
   var preferences = shared.preferences();
   NSWorkspace.sharedWorkspace().openFile_withApplication_(path, preferences.terminal);
 }

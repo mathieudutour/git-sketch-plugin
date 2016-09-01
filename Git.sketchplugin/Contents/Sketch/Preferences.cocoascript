@@ -3,7 +3,6 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
   try {
     var preferences = shared.preferences();
     var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,250));
@@ -62,7 +61,7 @@ var onRun = function(context) {
       shared.setPreference('exportScale', scale);
       shared.setPreference('diffByDefault', checkboxDiff.state() == 1);
       shared.setPreference('terminal', select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal');
-      doc.showMessage('Preferences updated');
+      context.document.showMessage('Preferences updated');
     }
   } catch (e) {
     shared.createFailAlert(context, "Failed...", e, true)

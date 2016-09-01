@@ -3,14 +3,14 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
+  if (!shared.checkForFile(context)) { return }
   try {
     var branchName = shared.createInput(context, 'Branch name', 'Create branch');
 
     if (branchName.responseCode == 1000 && branchName.message != nil) {
       var command = "git checkout -qb " + branchName.message;
-      var message = shared.exec(doc, command);
-      doc.showMessage("Switched to a new branch '" + branchName + "'");
+      var message = shared.exec(context, command);
+      context.document.showMessage("Switched to a new branch '" + branchName + "'");
     }
   } catch (e) {
     shared.createFailAlert(context, "Failed...", e, true)

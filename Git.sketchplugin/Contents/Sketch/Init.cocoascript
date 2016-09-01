@@ -3,18 +3,20 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
+  if (!shared.checkForFile(context)) { return }
   try {
-    var currentFileName = shared.getCurrentFileName(doc);
-    var command = "git init && git add \"" + currentFileName + "\"";
-    var message = shared.exec(doc, command);
-    doc.showMessage(message);
-    var remoteURL = shared.createInput(context, 'URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now');
+    var currentFileName = shared.getCurrentFileName(context);
+    if (currentFileName) {
+      var command = "git init && git add \"" + currentFileName + "\"";
+      var message = shared.exec(context, command);
+      context.document.showMessage(message);
+      var remoteURL = shared.createInput(context, 'URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now');
 
-    if (remoteURL.responseCode == 1000 && remoteURL.message != nil) {
-      var command = "git remote add origin " + remoteURL.message + "; exit";
-      var message = shared.exec(doc, command);
-      doc.showMessage(message.split('\n').join(' '));
+      if (remoteURL.responseCode == 1000 && remoteURL.message != nil) {
+        var command = "git remote add origin " + remoteURL.message + "; exit";
+        var message = shared.exec(context, command);
+        context.document.showMessage(message.split('\n').join(' '));
+      }
     }
   } catch(e) {
     shared.createFailAlert(context, "Failed...", e, true)

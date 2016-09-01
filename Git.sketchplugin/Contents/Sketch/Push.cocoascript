@@ -3,10 +3,10 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
+  if (!shared.checkForFile(context)) { return }
   try {
-    var message = shared.exec(doc, "git -c push.default=current push -q");
-    doc.showMessage("Changes pushed");
+    var message = shared.exec(context, "git -c push.default=current push -q");
+    context.document.showMessage("Changes pushed");
   } catch (e) {
     shared.createFailAlert(context, "Failed...", e, true)
   }

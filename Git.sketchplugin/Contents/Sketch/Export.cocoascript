@@ -3,10 +3,10 @@
 @import 'shared.cocoascript'
 
 var onRun = function(context) {
-  var doc = context.document;
+  if (!shared.checkForFile(context)) { return }
   try {
-    var message = shared.exportArtboards(doc, context.scriptPath);
-    doc.showMessage("Artboards exported");
+    var message = shared.exportArtboards(context);
+    context.document.showMessage("Artboards exported");
   } catch(e) {
     shared.createFailAlert(context, "Failed...", e, true)
   }
