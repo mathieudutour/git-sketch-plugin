@@ -25,6 +25,6 @@ var onRun = function(context) {
       doc.showMessage("No branches");
     }
   } catch (e) {
-    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+    shared.createFailAlert(context, "Failed...", e, true)
   }
 }

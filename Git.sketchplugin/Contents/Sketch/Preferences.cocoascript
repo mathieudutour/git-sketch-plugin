@@ -65,7 +65,6 @@ var onRun = function(context) {
       doc.showMessage('Preferences updated');
     }
   } catch (e) {
-    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
-    throw e;
+    shared.createFailAlert(context, "Failed...", e, true)
   }
 }

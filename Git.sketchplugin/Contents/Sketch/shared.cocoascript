@@ -135,6 +135,35 @@ var shared = {
       index: sel
     };
   },
+  createFailAlert: function(context, title, error, buttonToReport) {
+    log(error)
+    var alert = NSAlert.alloc().init();
+    alert.informativeText = error
+    alert.setMessageText(title);
+    alert.addButtonWithTitle('OK');
+    if (buttonToReport) {
+      alert.addButtonWithTitle('Report issue');
+    }
+    setIconForAlert(context, alert);
+
+    var responseCode = alert.runModal();
+
+    if (responseCode == 1001) {
+      var errorString
+      try {
+        errorString = JSON.stringify(error, null, '\t')
+      } catch (e) {
+        errorString = error
+      }
+      var urlString = "https://github.com/mathieudutour/git-sketch-plugin/issues/new?body=" + encodeURIComponent('### How did it happen?\n\n\n### Error log\n\n```\n' + errorString + '\n```')
+      var url = NSURL.URLWithString(urlString)
+      NSWorkspace.sharedWorkspace().openURL(url);
+    }
+
+    return {
+      responseCode: responseCode,
+    };
+  },
   getCurrentBranch: function(doc) {
     var path = getCurrentDirectory(doc);
     var currentBranchCommand = NSString.stringWithFormat_("\\cd \"%@\" && \\git rev-parse --abbrev-ref HEAD", path);

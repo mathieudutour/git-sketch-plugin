@@ -10,6 +10,6 @@ var onRun = function(context) {
     var message = shared.exec(doc, command);
     doc.showMessage("File added to git");
   } catch(e) {
-    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+    shared.createFailAlert(context, "Failed...", e, true)
   }
 }

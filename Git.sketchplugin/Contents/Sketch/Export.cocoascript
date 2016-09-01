@@ -8,7 +8,6 @@ var onRun = function(context) {
     var message = shared.exportArtboards(doc, context.scriptPath);
     doc.showMessage("Artboards exported");
   } catch(e) {
-    log(e)
-    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
+    shared.createFailAlert(context, "Failed...", e, true)
   }
 }

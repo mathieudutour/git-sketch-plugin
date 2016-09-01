@@ -17,7 +17,6 @@ var onRun = function(context) {
       doc.showMessage(message.split('\n').join(' '));
     }
   } catch (e) {
-    NSApplication.sharedApplication().displayDialog_withTitle_(e, "Failed...");
-    throw e;
+    shared.createFailAlert(context, "Failed...", e, true)
   }
 }
