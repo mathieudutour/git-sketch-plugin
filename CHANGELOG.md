@@ -1,3 +1,8 @@
+## [0.7.2] - 2016-09-08
+
+* fix when the path to the plugin has multiple spaces
+
+
 ## [0.7.1] - 2016-09-01
 
 * check if a file is open and send a helpful message if not

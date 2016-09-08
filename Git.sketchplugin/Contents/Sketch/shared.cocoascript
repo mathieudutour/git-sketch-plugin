@@ -180,7 +180,7 @@ var shared = {
     var path = getCurrentDirectory(context);
     var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '');
     var preferences = getUserPreferences();
-    var pluginPath = [NSString stringWithFormat:@'%@', context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(' ', '\\ ')];
+    var pluginPath = [NSString stringWithFormat:@'%@', context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')];
     var fileFolder = preferences.exportFolder + '/' + currentFileNameWithoutExtension
     var command = NSString.stringWithFormat_("\\%@exportArtboard.sh \"%@\" \"%@\" \"%@\" \"%@\" \"%@\" \"%@\"", pluginPath, path, preferences.exportFolder, fileFolder, [[NSBundle mainBundle] bundlePath], currentFileName, preferences.exportScale);
     return exec(context, command);
