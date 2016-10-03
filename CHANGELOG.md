@@ -1,3 +1,7 @@
+## [0.7.3] - 2016-10-03
+
+* fix non-ascii characters encoding (thanks @tomonari-t)
+
 ## [0.7.2] - 2016-09-08
 
 * fix when the path to the plugin has multiple spaces
