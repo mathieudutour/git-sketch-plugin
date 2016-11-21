@@ -87,8 +87,8 @@ var shared = {
     };
   },
   createInputWithCheckbox: function(context, msg, checkboxMsg, checked, okLabel, cancelLabel) {
-    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,50));
-    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,25,300,25));
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,100));
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,25,300,75));
     input.editable = true;
     var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0,0,300,25));
     checkbox.setButtonType(3);
