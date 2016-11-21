@@ -1,6 +1,12 @@
+## [0.7.4] - 2016-11-21
+
+* More lines for Commit: the first line is the commit message, all the others are an optional longer description
+
+
 ## [0.7.3] - 2016-10-03
 
 * fix non-ascii characters encoding (thanks @tomonari-t)
+
 
 ## [0.7.2] - 2016-09-08
 
