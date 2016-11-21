@@ -88,13 +88,12 @@ var shared = {
   },
   createInputWithCheckbox: function(context, msg, checkboxMsg, checked, okLabel, cancelLabel) {
     var accessory = NSView.alloc().initWithFrame(NSMakeRect(0,0,300,100));
-    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0,25,300,75));
-    input.editable = true;
+    var input = TextArea(0,25,300,75);
     var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0,0,300,25));
     checkbox.setButtonType(3);
     checkbox.title = checkboxMsg;
     checkbox.state = checked ? 1 : 0;
-    accessory.addSubview(input);
+    accessory.addSubview(input.view);
     accessory.addSubview(checkbox);
 
     var alert = NSAlert.alloc().init();
@@ -105,7 +104,7 @@ var shared = {
     alert.setAccessoryView(accessory);
 
     var responseCode = alert.runModal();
-    var message = input.stringValue();
+    var message = input.getValue();
 
     return {
       responseCode: responseCode,
@@ -206,3 +205,19 @@ var shared = {
     }
   }
 };
+
+function TextArea(x, y, width, heigh) {
+  var scrollView = NSScrollView.alloc().initWithFrame(NSMakeRect(x, y, width, heigh));
+  scrollView.borderStyle = NSLineBorder
+  var contentSize = scrollView.contentSize()
+  var input = NSTextView.alloc().initWithFrame(NSMakeRect(0, 0, contentSize.width, contentSize.height));
+  input.minSize = NSMakeSize(0, contentSize.height)
+  input.maxSize = NSMakeSize(contentSize.width, Infinity)
+  scrollView.documentView = input
+  return {
+    view: scrollView,
+    getValue: function() {
+      return input.string()
+    }
+  }
+}
