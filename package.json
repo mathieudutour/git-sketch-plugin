@@ -1,6 +1,6 @@
 {
   "name": "git-sketch-plugin",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Plugin to handle versioning in git",
   "main": "index.js",
   "directories": {

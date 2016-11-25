@@ -1,3 +1,8 @@
+## [0.8.1] - 2016-11-25
+
+* More robust check for failure when executing a task
+
+
 ## [0.8.0] - 2016-11-25
 
 * Complete rewrite of the plugin using `sketch-builder`
