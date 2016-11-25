@@ -181,7 +181,7 @@ export function exportArtboards (context) {
   var preferences = getUserPreferences()
   var pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')
   var fileFolder = preferences.exportFolder + '/' + currentFileNameWithoutExtension
-  var command = `${pluginPath}exportArtboard.sh "${path}" "${preferences.exportFolder}" "${fileFolder}" "${NSBundle.mainBundle.bundlePath()}" "${currentFileName}" "${preferences.exportScale}"`
+  var command = `${pluginPath}/exportArtboard.sh "${path}" "${preferences.exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${preferences.exportScale}"`
   return exec(context, command)
 }
 
