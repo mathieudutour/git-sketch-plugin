@@ -39,16 +39,20 @@ export function exec (context, command) {
 
   task.setLaunchPath_('/bin/bash')
   task.setArguments_(NSArray.arrayWithObjects_('-c', '-l', command, null))
-  task.setStandardOutput_(pipe)
-  task.setStandardError_(errPipe)
+  task.standardOutput = pipe
+  task.standardError = errPipe
   task.launch()
 
-  var data = errPipe.fileHandleForReading().readDataToEndOfFile()
-  if (data != null && data.length()) {
-    var message = NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding)
+  const errData = errPipe.fileHandleForReading().readDataToEndOfFile()
+  const data = pipe.fileHandleForReading().readDataToEndOfFile()
+
+  if (task.terminationStatus() != 0) {
+    const message = errData != null && errData.length()
+      ? NSString.alloc().initWithData_encoding_(errData, NSUTF8StringEncoding)
+      : 'Unknow error'
     return NSException.raise_format_('failed', message)
   }
-  data = pipe.fileHandleForReading().readDataToEndOfFile()
+
   return NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding)
 }
 
