@@ -1,9 +1,0 @@
-// Opens terminal in working directory (cmd alt ctrl o)
-
-@import 'shared.cocoascript'
-
-var onRun = function(context) {
-  var path = shared.getCurrentDirectory(context);
-  var preferences = shared.preferences();
-  NSWorkspace.sharedWorkspace().openFile_withApplication_(path, preferences.terminal);
-}

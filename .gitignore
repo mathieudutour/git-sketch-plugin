@@ -1,0 +1,13 @@
+# build artefacts
+Git.sketchplugin/Contents/Sketch
+
+# npm
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Optional npm cache directory
+.npm

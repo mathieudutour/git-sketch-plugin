@@ -1,3 +1,9 @@
+## [0.8.0] - 2016-11-25
+
+* Complete rewrite of the plugin using `sketch-builder`
+* Export symbols as well
+
+
 ## [0.7.4] - 2016-11-21
 
 * More lines for Commit: the first line is the commit message, all the others are an optional longer description
