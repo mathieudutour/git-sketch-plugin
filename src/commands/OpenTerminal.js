@@ -3,7 +3,7 @@
 import {getCurrentDirectory, getUserPreferences} from '../common'
 
 export default function (context) {
-  var path = getCurrentDirectory(context)
-  var preferences = getUserPreferences()
-  NSWorkspace.sharedWorkspace().openFile_withApplication_(path, preferences.terminal)
+  const path = getCurrentDirectory(context)
+  const {terminal} = getUserPreferences()
+  NSWorkspace.sharedWorkspace().openFile_withApplication_(path, terminal)
 }

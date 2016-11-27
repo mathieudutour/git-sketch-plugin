@@ -1,4 +1,5 @@
 // Common library of things
+import prefsManager from 'sketch-module-user-preferences'
 
 export function setIconForAlert (context, alert) {
   alert.setIcon(NSImage.alloc().initWithContentsOfFile(
@@ -8,25 +9,12 @@ export function setIconForAlert (context, alert) {
 const keyPref = 'gitSketch'
 
 export function getUserPreferences () {
-  var exportFolder = '.exportedArtboards'
-  var exportScale = '1.0'
-  var terminal = 'Terminal'
-  var diffByDefault = true
-  try {
-    var prefs = NSUserDefaults.standardUserDefaults()
-    exportFolder = prefs.stringForKey(keyPref + 'exportFolder') || '.exportedArtboards'
-    exportScale = prefs.stringForKey(keyPref + 'exportScale') || '1.0'
-    terminal = prefs.stringForKey(keyPref + 'terminal') || 'Terminal'
-    diffByDefault = prefs.boolForKey(keyPref + 'diffByDefault')
-  } catch (e) {
-    console.log(e)
-  }
-  return {
-    exportFolder: exportFolder,
-    exportScale: exportScale,
-    diffByDefault: diffByDefault,
-    terminal: terminal
-  }
+  return prefsManager.getUserPreferences(keyPref, {
+    exportFolder: '.exportedArtboards',
+    exportScale: '1.0',
+    terminal: 'Terminal',
+    diffByDefault: true
+  })
 }
 
 export function exec (context, command) {
@@ -167,9 +155,9 @@ export function createSelect (context, msg, items, selectedItemIndex, okLabel, c
 }
 
 export function getCurrentBranch (context) {
-  var path = getCurrentDirectory(context)
-  var currentBranchCommand = `cd "${path}" && git rev-parse --abbrev-ref HEAD`
-  var branch
+  const path = getCurrentDirectory(context)
+  const currentBranchCommand = `cd "${path}" && git rev-parse --abbrev-ref HEAD`
+  let branch
   try {
     branch = exec(context, currentBranchCommand).split('\n')[0]
   } catch (e) {
@@ -179,24 +167,18 @@ export function getCurrentBranch (context) {
 }
 
 export function exportArtboards (context) {
-  var currentFileName = getCurrentFileName(context)
-  var path = getCurrentDirectory(context)
-  var currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '')
-  var preferences = getUserPreferences()
-  var pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')
-  var fileFolder = preferences.exportFolder + '/' + currentFileNameWithoutExtension
-  var command = `${pluginPath}/exportArtboard.sh "${path}" "${preferences.exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${preferences.exportScale}"`
+  const currentFileName = getCurrentFileName(context)
+  const path = getCurrentDirectory(context)
+  const currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '')
+  const {exportFolder, exportScale} = getUserPreferences()
+  const pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')
+  const fileFolder = exportFolder + '/' + currentFileNameWithoutExtension
+  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${exportScale}"`
   return exec(context, command)
 }
 
-export function setPreference (key, value) {
-  key = keyPref + key
-  if (typeof value === 'boolean') {
-    NSUserDefaults.standardUserDefaults().setBool_forKey(value, key)
-  } else {
-    NSUserDefaults.standardUserDefaults().setObject_forKey(value, key)
-  }
-  NSUserDefaults.standardUserDefaults().synchronize()
+export function setUserPreferences (prefs) {
+  return prefsManager.setUserPreferences(keyPref, prefs)
 }
 
 export function checkForFile (context) {
@@ -211,17 +193,15 @@ export function checkForFile (context) {
 }
 
 function TextArea (x, y, width, heigh) {
-  var scrollView = NSScrollView.alloc().initWithFrame(NSMakeRect(x, y, width, heigh))
+  const scrollView = NSScrollView.alloc().initWithFrame(NSMakeRect(x, y, width, heigh))
   scrollView.borderStyle = NSLineBorder
-  var contentSize = scrollView.contentSize()
-  var input = NSTextView.alloc().initWithFrame(NSMakeRect(0, 0, contentSize.width, contentSize.height))
+  const contentSize = scrollView.contentSize()
+  const input = NSTextView.alloc().initWithFrame(NSMakeRect(0, 0, contentSize.width, contentSize.height))
   input.minSize = NSMakeSize(0, contentSize.height)
   input.maxSize = NSMakeSize(contentSize.width, Infinity)
   scrollView.documentView = input
   return {
     view: scrollView,
-    getValue () {
-      return input.string()
-    }
+    getValue: () => input.string()
   }
 }

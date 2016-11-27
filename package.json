@@ -33,6 +33,7 @@
     "sketch-builder": "0.1.1"
   },
   "dependencies": {
-    "sketch-module-update": "^0.1.0"
+    "sketch-module-update": "^0.1.0",
+    "sketch-module-user-preferences": "^0.2.0"
   }
 }

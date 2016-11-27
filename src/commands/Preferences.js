@@ -1,10 +1,10 @@
 // Commits all working file to git (cmd alt ctrl c)
 
-import {getUserPreferences, setIconForAlert, setPreference, createFailAlert} from '../common'
+import {getUserPreferences, setIconForAlert, setUserPreferences, createFailAlert} from '../common'
 
 export default function (context) {
   try {
-    var preferences = getUserPreferences()
+    const preferences = getUserPreferences()
     var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 250))
 
     var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 225, 300, 20))
@@ -56,10 +56,12 @@ export default function (context) {
     var scale = inputScale.stringValue()
 
     if (responseCode === 1000) {
-      setPreference('exportFolder', message)
-      setPreference('exportScale', scale)
-      setPreference('diffByDefault', checkboxDiff.state() == 1)
-      setPreference('terminal', select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal')
+      setUserPreferences({
+        exportFolder: message,
+        exportScale: scale,
+        diffByDefault: checkboxDiff.state() == 1,
+        terminal: select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal'
+      })
       context.document.showMessage('Preferences updated')
     }
   } catch (e) {
