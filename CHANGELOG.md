@@ -1,3 +1,9 @@
+## [0.8.2] - 2016-11-29
+
+* Fix a typo causing the fail alert not to show up
+* Optionally send anonymous usage data in order to improve the plugin
+
+
 ## [0.8.1] - 2016-11-25
 
 * More robust check for failure when executing a task

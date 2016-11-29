@@ -1,40 +1,47 @@
 // Commits all working file to git (cmd alt ctrl c)
-
-import {getUserPreferences, setIconForAlert, setUserPreferences, createFailAlert} from '../common'
+import { sendEvent, sendError } from '../analytics'
+import { setIconForAlert, createFailAlert } from '../common'
+import { getUserPreferences, setUserPreferences } from '../preferences'
 
 export default function (context) {
   try {
+    sendEvent(context, 'Preferences', 'Open preferences')
     const preferences = getUserPreferences()
-    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 250))
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 275))
 
-    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 225, 300, 20))
+    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 250, 300, 20))
     textExport.string = 'Folder where the pretty diffs will be exported'
     textExport.drawsBackground = false
     textExport.editable = false
-    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0, 200, 300, 25))
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0, 225, 300, 25))
     input.stringValue = preferences.exportFolder
     input.editable = true
 
-    var scaleExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 175, 300, 20))
+    var scaleExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 200, 300, 20))
     scaleExport.string = 'Scale of the exported artboards'
     scaleExport.drawsBackground = false
     scaleExport.editable = false
-    var inputScale = NSTextField.alloc().initWithFrame(NSMakeRect(0, 150, 300, 25))
+    var inputScale = NSTextField.alloc().initWithFrame(NSMakeRect(0, 175, 300, 25))
     inputScale.stringValue = preferences.exportScale
     inputScale.editable = true
 
-    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0, 100, 300, 25))
+    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0, 125, 300, 25))
     checkboxDiff.setButtonType(3)
     checkboxDiff.title = 'Generate pretty diff by default'
     checkboxDiff.state = preferences.diffByDefault ? 1 : 0
 
-    var textTerminal = NSTextView.alloc().initWithFrame(NSMakeRect(0, 50, 300, 20))
+    var textTerminal = NSTextView.alloc().initWithFrame(NSMakeRect(0, 75, 300, 20))
     textTerminal.string = 'Terminal App'
     textTerminal.drawsBackground = false
     textTerminal.editable = false
-    var select = NSComboBox.alloc().initWithFrame(NSMakeRect(0, 25, 300, 25))
+    var select = NSComboBox.alloc().initWithFrame(NSMakeRect(0, 50, 300, 25))
     select.addItemsWithObjectValues(['Terminal', 'iTerm'])
     select.selectItemAtIndex(preferences.terminal == 'iTerm' ? 1 : 0)
+
+    var checkboxAnalytics = NSButton.alloc().initWithFrame(NSMakeRect(0, 25, 300, 25))
+    checkboxAnalytics.setButtonType(3)
+    checkboxAnalytics.title = 'Send anymous usage data to improve the plugin'
+    checkboxAnalytics.state = preferences.sendAnalytics ? 1 : 0
 
     accessory.addSubview(textExport)
     accessory.addSubview(input)
@@ -43,6 +50,7 @@ export default function (context) {
     accessory.addSubview(checkboxDiff)
     accessory.addSubview(textTerminal)
     accessory.addSubview(select)
+    accessory.addSubview(checkboxAnalytics)
 
     var alert = NSAlert.alloc().init()
     alert.setMessageText('Git Plugin Preferences')
@@ -56,15 +64,20 @@ export default function (context) {
     var scale = inputScale.stringValue()
 
     if (responseCode === 1000) {
+      sendEvent(context, 'Preferences', 'Save preferences')
       setUserPreferences({
         exportFolder: message,
         exportScale: scale,
         diffByDefault: checkboxDiff.state() == 1,
-        terminal: select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal'
+        terminal: select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal',
+        sendAnalytics: checkboxAnalytics.state() == 1
       })
       context.document.showMessage('Preferences updated')
+    } else {
+      sendEvent(context, 'Preferences', 'Cancel preferences')
     }
   } catch (e) {
+    sendError(context, e)
     createFailAlert(context, 'Failed...', e, true)
   }
 }

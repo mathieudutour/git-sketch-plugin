@@ -1,5 +1,5 @@
 import update from 'sketch-module-update'
-import {setIconForAlert} from '../common'
+import { setIconForAlert } from '../common'
 
 const repoFullName = 'mathieudutour/git-sketch-plugin'
 

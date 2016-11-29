@@ -1,20 +1,10 @@
 // Common library of things
-import prefsManager from 'sketch-module-user-preferences'
+import { sendError } from './analytics'
+import { getUserPreferences } from './preferences'
 
 export function setIconForAlert (context, alert) {
   alert.setIcon(NSImage.alloc().initWithContentsOfFile(
     context.plugin.urlForResourceNamed('icon.png').path()))
-}
-
-const keyPref = 'gitSketch'
-
-export function getUserPreferences () {
-  return prefsManager.getUserPreferences(keyPref, {
-    exportFolder: '.exportedArtboards',
-    exportScale: '1.0',
-    terminal: 'Terminal',
-    diffByDefault: true
-  })
 }
 
 export function exec (context, command) {
@@ -55,8 +45,8 @@ export function getCurrentFileName (context) {
 export function createFailAlert (context, title, error, buttonToReport) {
   console.log(error)
   var alert = NSAlert.alloc().init()
-  alert.informativeText = error
-  alert.setMessageText(title)
+  alert.informativeText = '' + error
+  alert.messageText = title
   alert.addButtonWithTitle('OK')
   if (buttonToReport) {
     alert.addButtonWithTitle('Report issue')
@@ -177,16 +167,13 @@ export function exportArtboards (context) {
   return exec(context, command)
 }
 
-export function setUserPreferences (prefs) {
-  return prefsManager.setUserPreferences(keyPref, prefs)
-}
-
 export function checkForFile (context) {
   try {
     getCurrentFileName(context)
     getCurrentDirectory(context)
     return true
   } catch (e) {
+    sendError(context, 'Missing file')
     createFailAlert(context, 'Missing file', 'You need to open a sketch file before doing that')
     return false
   }
