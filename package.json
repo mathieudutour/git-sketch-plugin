@@ -1,8 +1,8 @@
 {
   "name": "git-sketch-plugin",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Plugin to handle versioning in git",
-  "main": "index.js",
+  "main": "Git.sketchplugin",
   "directories": {
     "doc": "docs",
     "example": "example"
@@ -33,7 +33,7 @@
     "sketch-builder": "0.1.1"
   },
   "dependencies": {
-    "sketch-module-update": "^0.1.0",
+    "sketch-module-update": "0.1.2",
     "sketch-module-user-preferences": "^0.2.0"
   }
 }
