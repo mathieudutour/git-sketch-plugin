@@ -20,8 +20,18 @@ From ...
 * [Git](https://git-scm.com/) (coming with OS X so you shouldn't have to do anything)
 
 ## Installation
+
+### From a release (simplest)
+
 * [Download](https://github.com/mathieudutour/git-sketch-plugin/releases/latest) the latest release of the plugin
 * Un-zip
+* Double-click on Git.sketchplugin
+
+### From the sources
+
+* Clone the repo
+* Install the dependencies (`npm install`)
+* Build (`npm run build`)
 * Double-click on Git.sketchplugin
 
 ## Documentation
