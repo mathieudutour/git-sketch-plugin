@@ -32,7 +32,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
-    "sketch-builder": "^0.1.1"
+    "sketch-builder": "^0.2.0"
   },
   "dependencies": {
     "sketch-module-google-analytics": "^0.1.3",
