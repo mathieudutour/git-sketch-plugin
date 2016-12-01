@@ -9,7 +9,7 @@
     {
       "name": "update",
       "identifier": "update",
-      "script": "update.cocoascript",
+      "script": "./commands/update.js",
       "handlers" : {
         "actions": {
           "OpenDocument": "onOpenDocument"
@@ -20,55 +20,55 @@
       "name": "Commit",
       "identifier": "commit",
       "shortcut": "cmd alt ctrl c",
-      "script": "Commit.cocoascript"
+      "script": "./commands/Commit.js"
     },
     {
       "name": "Push",
       "identifier": "push",
       "shortcut": "cmd alt ctrl p",
-      "script": "Push.cocoascript"
+      "script": "./commands/Push.js"
     },
     {
       "name": "New Branch",
       "identifier": "branch",
       "shortcut": "cmd alt ctrl n",
-      "script": "Branch.cocoascript"
+      "script": "./commands/Branch.js"
     },
     {
       "name": "Switch branch",
       "identifier": "checkout",
       "shortcut": "cmd alt ctrl o",
-      "script": "Checkout.cocoascript"
+      "script": "./commands/Checkout.js"
     },
     {
       "name": "Pull",
       "identifier": "pull",
-      "script": "Pull.cocoascript"
+      "script": "./commands/Pull.js"
     },
     {
       "name": "Generate files for pretty diffs",
       "identifier": "export",
-      "script": "Export.cocoascript"
+      "script": "./commands/Export.js"
     },
     {
       "name": "Add file to git",
       "identifier": "add",
-      "script": "Add.cocoascript"
+      "script": "./commands/Add.js"
     },
     {
       "name": "Init git repo",
       "identifier": "init",
-      "script": "Init.cocoascript"
+      "script": "./commands/Init.js"
     },
     {
       "name": "Preferences",
       "identifier": "preferences",
-      "script": "Preferences.cocoascript"
+      "script": "./commands/Preferences.js"
     },
     {
       "name": "Open terminal",
       "identifier": "terminal",
-      "script": "OpenTerminal.cocoascript"
+      "script": "./commands/OpenTerminal.js"
     }
   ],
   "menu": {
