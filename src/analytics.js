@@ -7,10 +7,10 @@ export function sendEvent (context, category, action, label, value) {
   const { sendAnalytics } = getUserPreferences()
   if (!sendAnalytics) { return }
   const payload = {}
-  if (category) { payload.category = category }
-  if (action) { payload.action = action }
-  if (label) { payload.label = label }
-  if (value) { payload.value = value }
+  if (category) { payload.ec = category }
+  if (action) { payload.ea = action }
+  if (label) { payload.el = label }
+  if (value) { payload.ev = value }
 
   return send(context, key, 'event', payload)
 }
