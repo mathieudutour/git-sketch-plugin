@@ -1,3 +1,9 @@
+## [0.8.3] - 2016-12-01
+
+* Fix typo in analytics
+* Update build tools
+
+
 ## [0.8.2] - 2016-11-29
 
 * Fix a typo causing the fail alert not to show up
