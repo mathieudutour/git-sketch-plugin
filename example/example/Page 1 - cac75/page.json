@@ -1,0 +1,19 @@
+{
+  "objectId": "FD30640F-4562-4A7A-B3E9-FC36D78D8982",
+  "type": "page",
+  "className": "MSPage",
+  "name": "Page 1",
+  "index": 3,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "195.000",
+        "y": "111.000"
+      },
+      "size": {
+        "width": "1297.000",
+        "height": "676.000"
+      }
+    }
+  }
+}

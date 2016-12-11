@@ -8,7 +8,7 @@ export default function (context) {
     var currentFileName = getCurrentFileName(context)
     if (currentFileName) {
       sendEvent(context, 'Init', 'Start init')
-      var command = `git init && git add "${currentFileName}"`
+      var command = `git init`
       var message = exec(context, command)
       context.document.showMessage(message)
       var remoteURL = createInput(context, 'URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now')

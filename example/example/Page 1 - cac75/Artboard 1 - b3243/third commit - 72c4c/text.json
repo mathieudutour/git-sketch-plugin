@@ -1,0 +1,26 @@
+{
+  "objectId": "E7DB5973-6380-4692-863F-0D638C272F14",
+  "type": "text",
+  "className": "MSTextLayer",
+  "name": "third commit",
+  "index": 1,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "88.500",
+        "y": "148.000"
+      },
+      "size": {
+        "width": "204.000",
+        "height": "27.000"
+      }
+    },
+    "fontFamily": "Roboto-Light",
+    "fontSize": "36",
+    "color": "#000000",
+    "lineHeight": "27",
+    "textBehaviour": "auto",
+    "textAlign": "center",
+    "content": "third commit"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "objectId": "67013BA9-ADAB-465E-BABA-70C0D086DEDC",
+  "type": "artboard",
+  "className": "MSArtboardGroup",
+  "name": "Artboard",
+  "index": 2,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "-101.000",
+        "y": "-131.000"
+      },
+      "size": {
+        "width": "380.000",
+        "height": "314.000"
+      }
+    }
+  }
+}

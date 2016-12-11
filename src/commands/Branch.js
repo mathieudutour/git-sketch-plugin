@@ -11,7 +11,7 @@ export default function (context) {
     if (branchName.responseCode == 1000 && branchName.message != null) {
       var command = 'git checkout -qb ' + branchName.message
       exec(context, command)
-      context.document.showMessage("Switched to a new branch '" + branchName + "'")
+      context.document.showMessage("Switched to a new branch '" + branchName.message + "'")
       sendEvent(context, 'Branch', 'Create branch', 'Did create branch')
     } else {
       sendEvent(context, 'Branch', 'Create branch', 'Cancel creating branch')

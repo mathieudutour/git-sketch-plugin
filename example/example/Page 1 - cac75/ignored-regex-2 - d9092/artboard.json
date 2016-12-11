@@ -1,0 +1,19 @@
+{
+  "objectId": "5AB60A88-5279-4C0D-8469-7B24E529EB14",
+  "type": "artboard",
+  "className": "MSArtboardGroup",
+  "name": "ignored-regex-2",
+  "index": 2,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "695.000",
+        "y": "502.000"
+      },
+      "size": {
+        "width": "397.000",
+        "height": "285.000"
+      }
+    }
+  }
+}

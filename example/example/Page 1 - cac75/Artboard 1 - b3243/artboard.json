@@ -1,0 +1,19 @@
+{
+  "objectId": "CD6FF7D8-167F-498E-BD66-B5A6D6965CA2",
+  "type": "artboard",
+  "className": "MSArtboardGroup",
+  "name": "Artboard 1",
+  "index": 5,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "195.000",
+        "y": "111.000"
+      },
+      "size": {
+        "width": "381.000",
+        "height": "310.000"
+      }
+    }
+  }
+}

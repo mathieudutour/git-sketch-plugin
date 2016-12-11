@@ -1,6 +1,7 @@
 // Checkout (cmd alt ctrl o)
 import { sendEvent, sendError } from '../analytics'
 import { getCurrentBranch, checkForFile, createFailAlert, exec, createSelect } from '../common'
+import { importFromJSON } from 'sketch-module-json-sync'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
@@ -11,16 +12,20 @@ export default function (context) {
     if (listBranches != null && listBranches != '') {
       listBranches = listBranches.split('\n')
       listBranches.pop() // last item is always an empty string
-      var currentBranch = getCurrentBranch(context)
-      var currentIndex = listBranches.indexOf(currentBranch) == -1 ? 0 : listBranches.indexOf(currentBranch)
+      const currentBranch = getCurrentBranch(context)
+      var currentIndex = 0
+      listBranches.forEach((b, i) => {
+        if (b == currentBranch) {
+          currentIndex = i
+        }
+      })
       var branch = createSelect(context, 'Checkout branch', listBranches, currentIndex, 'Checkout')
       if (branch.responseCode == 1000 && branch.index >= 0 && branch.index < listBranches.length) {
         sendEvent(context, 'Branch', 'Switch branch', 'Did switch branch')
         var selectedBranch = listBranches[branch.index]
         var command = 'git checkout -q ' + selectedBranch
         exec(context, command)
-        var app = NSApp.delegate()
-        app.refreshCurrentDocument()
+        importFromJSON(context)
         context.document.showMessage(`Switched to branch '${selectedBranch}'`)
       } else {
         sendEvent(context, 'Branch', 'Switch branch', 'Cancel switching branch')

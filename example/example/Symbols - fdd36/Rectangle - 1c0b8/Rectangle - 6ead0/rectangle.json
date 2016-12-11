@@ -1,0 +1,30 @@
+{
+  "objectId": "6026ED49-41C5-4E7E-9222-B30ECD3F2B39",
+  "type": "rectangle",
+  "className": "MSShapeGroup",
+  "name": "Rectangle",
+  "index": 2,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "0.000",
+        "y": "0.000"
+      },
+      "size": {
+        "width": "205.000",
+        "height": "127.000"
+      }
+    },
+    "background": [
+      {
+        "color": "#D8D8D8"
+      }
+    ],
+    "borders": [
+      {
+        "color": "#979797",
+        "thickness": 1
+      }
+    ]
+  }
+}
