@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build && skpm link ./",
     "build": "skpm build",
     "publish": "skpm publish"
   },
@@ -32,7 +33,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
-    "skpm": "^0.2.1"
+    "skpm": "^0.4.3"
   },
   "dependencies": {
     "sketch-module-google-analytics": "^0.1.3",
