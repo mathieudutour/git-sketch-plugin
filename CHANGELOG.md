@@ -1,3 +1,9 @@
+## [0.8.4] - 2017-01-08
+
+* Add UI to manage branches
+* Make the plugin compatible with Sketch Runner
+
+
 ## [0.8.3] - 2016-12-01
 
 * Fix typo in analytics
