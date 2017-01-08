@@ -20,30 +20,32 @@
       "name": "Commit",
       "identifier": "commit",
       "shortcut": "cmd alt ctrl c",
-      "script": "./commands/Commit.js"
+      "script": "./commands/Commit.js",
+      "description" : "Commit your changes.",
+      "icon" : "icons/commit.png"
     },
     {
       "name": "Push",
       "identifier": "push",
       "shortcut": "cmd alt ctrl p",
-      "script": "./commands/Push.js"
+      "script": "./commands/Push.js",
+      "description" : "Push your commits to GitHub.",
+      "icon" : "icons/push.png"
     },
     {
-      "name": "New Branch",
-      "identifier": "branch",
-      "shortcut": "cmd alt ctrl n",
-      "script": "./commands/Branch.js"
-    },
-    {
-      "name": "Switch branch",
-      "identifier": "checkout",
-      "shortcut": "cmd alt ctrl o",
-      "script": "./commands/Checkout.js"
+      "name": "Branches",
+      "identifier": "branches",
+      "shortcut": "cmd alt ctrl b",
+      "script": "./commands/Branches.js",
+      "description" : "Manage git branches.",
+      "icon" : "icons/branches.png"
     },
     {
       "name": "Pull",
       "identifier": "pull",
-      "script": "./commands/Pull.js"
+      "script": "./commands/Pull.js",
+      "description" : "Pull changes and branches from GitHub.",
+      "icon" : "icons/pull.png"
     },
     {
       "name": "Generate files for pretty diffs",
@@ -76,8 +78,7 @@
     "items": [
       "commit",
       "push",
-      "branch",
-      "checkout",
+      "branches",
       "pull",
       {
         "title": "Advanced",

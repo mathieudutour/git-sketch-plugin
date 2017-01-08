@@ -1,10 +1,10 @@
 // Commits all working file to git (cmd alt ctrl c)
-import { sendEvent, sendError } from '../analytics'
-import { setIconForAlert, createFailAlert } from '../common'
+import { sendEvent } from '../analytics'
+import { setIconForAlert, executeSafely } from '../common'
 import { getUserPreferences, setUserPreferences } from '../preferences'
 
 export default function (context) {
-  try {
+  executeSafely(function () {
     sendEvent(context, 'Preferences', 'Open preferences')
     const preferences = getUserPreferences()
     var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 275))
@@ -76,8 +76,5 @@ export default function (context) {
     } else {
       sendEvent(context, 'Preferences', 'Cancel preferences')
     }
-  } catch (e) {
-    sendError(context, e)
-    createFailAlert(context, 'Failed...', e, true)
-  }
+  })
 }

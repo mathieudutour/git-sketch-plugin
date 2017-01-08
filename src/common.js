@@ -7,6 +7,15 @@ export function setIconForAlert (context, alert) {
     context.plugin.urlForResourceNamed('icon.png').path()))
 }
 
+export function executeSafely (context, func) {
+  try {
+    func(context)
+  } catch (e) {
+    sendError(context, e)
+    createFailAlert(context, 'Failed...', e, true)
+  }
+}
+
 export function exec (context, command) {
   var task = NSTask.alloc().init()
   var pipe = NSPipe.pipe()

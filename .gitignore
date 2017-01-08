@@ -1,5 +1,6 @@
 # build artefacts
 Git.sketchplugin/Contents/Sketch
+Git.sketchplugin/Contents/Resources/branches.js
 
 # npm
 node_modules
