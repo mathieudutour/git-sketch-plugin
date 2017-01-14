@@ -7,7 +7,7 @@ export default function (context) {
   executeSafely(function () {
     sendEvent(context, 'Preferences', 'Open preferences')
     const preferences = getUserPreferences()
-    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 275))
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 325))
 
     var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 300, 300, 20))
     textExport.string = 'Folder where the pretty diffs will be exported'
@@ -32,7 +32,7 @@ export default function (context) {
 
     var checkboxOverview = NSButton.alloc().initWithFrame(NSMakeRect(0, 125, 300, 25))
     checkboxOverview.setButtonType(3)
-    checkboxOverview.title = 'Save an Overview file with rendered artboards'
+    checkboxOverview.title = 'Save an overview file with rendered artboards'
     checkboxOverview.state = preferences.includeOverviewFile ? 1 : 0
 
     var textTerminal = NSTextView.alloc().initWithFrame(NSMakeRect(0, 75, 300, 20))
