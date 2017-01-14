@@ -5,7 +5,7 @@ import { getUserPreferences } from '../preferences'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
-  executeSafely(function () {
+  executeSafely(context, function () {
     sendEvent(context, 'Commit', 'Start commiting')
     var currentBranch = getCurrentBranch(context)
     var commitMsg = createInputWithCheckbox(context, 'Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', getUserPreferences().diffByDefault, 'Commit')

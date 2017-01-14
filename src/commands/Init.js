@@ -4,7 +4,7 @@ import { checkForFile, getCurrentFileName, executeSafely, exec, createInput, cre
 
 export default function (context) {
   if (!checkForFile(context)) { return }
-  executeSafely(function () {
+  executeSafely(context, function () {
     var currentFileName = getCurrentFileName(context)
     if (currentFileName) {
       sendEvent(context, 'Init', 'Start init')
