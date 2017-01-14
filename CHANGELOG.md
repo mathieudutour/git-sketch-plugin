@@ -1,3 +1,8 @@
+## [0.8.5] - 2017-01-14
+
+* Fix typos causing a bunch of commads to fail (silly me) (thanks @philschatz)
+
+
 ## [0.8.4] - 2017-01-08
 
 * Add UI to manage branches
