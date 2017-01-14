@@ -4,7 +4,7 @@ import { setIconForAlert, executeSafely } from '../common'
 import { getUserPreferences, setUserPreferences } from '../preferences'
 
 export default function (context) {
-  executeSafely(function () {
+  executeSafely(context, function () {
     sendEvent(context, 'Preferences', 'Open preferences')
     const preferences = getUserPreferences()
     var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 275))

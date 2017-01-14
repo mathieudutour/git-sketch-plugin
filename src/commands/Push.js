@@ -4,7 +4,7 @@ import { checkForFile, executeSafely, exec } from '../common'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
-  executeSafely(function () {
+  executeSafely(context, function () {
     sendEvent(context, 'Push', 'Push to remote')
     exec(context, 'git -c push.default=current push -q')
     context.document.showMessage('Changes pushed')
