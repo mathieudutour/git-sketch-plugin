@@ -32,6 +32,7 @@ export default function (context) {
 
     var checkboxOverview = NSButton.alloc().initWithFrame(NSMakeRect(0, 125, 300, 25))
     checkboxOverview.setButtonType(3)
+    checkboxOverview.title = 'Save an Overview file with rendered artboards'
     checkboxOverview.state = preferences.includeOverviewFile ? 1 : 0
 
     var textTerminal = NSTextView.alloc().initWithFrame(NSMakeRect(0, 75, 300, 20))
