@@ -2,33 +2,7 @@ body {
   font-family: -apple-system;
 }
 
-.branch {
-  opacity: 0.6;
-  height: 25px;
-  clear: both;
-}
-
-  .branch.selected {
-    opacity: 1;
-  }
-
-  .branch:hover {
-    opacity: 1;
-  }
-
-.name {
-  cursor: pointer;
-}
-
-.delete {
-  float: right;
-  cursor: pointer;
-}
-  .delete img {
-    width: 15px;
-  }
-
-.create {
+.save {
   position: fixed;
   width: 100%;
   bottom: 23px;
@@ -46,4 +20,16 @@ body {
 
 #container {
   margin-bottom: 70px;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+input[type="text"] {
+  display: block;
+}
+
+.form {
+  padding-top: 10px;
 }

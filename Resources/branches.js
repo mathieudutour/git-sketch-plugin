@@ -1,25 +1,27 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { h, render, Component } from 'preact'
+import Portal from './Portal'
 import pluginCall from 'sketch-module-web-view/client'
 
 function cleanBranchName (name) {
   return name.replace('(B[m', '')
 }
 
-const Branch = ({name, selected}) => {
-  return (
-    <div className={'branch' + (selected ? ' selected' : '')}>
-      <span className='name' onClick={() => pluginCall('checkoutBranch', name)} title='Switch to the branch'>
-        {name}
-      </span>
-      <span className='delete' onClick={() => pluginCall('deleteBranch', name)}>
-        <img src="delete.svg" title='Delete the branch' />
-      </span>
-    </div>
-  )
+class Branch extends Component {
+  render ({name, selected}) {
+    return (
+      <div className={'branch' + (selected ? ' selected' : '')}>
+        <span className='name' onClick={() => pluginCall('checkoutBranch', name)} title='Switch to the branch'>
+          {name}
+        </span>
+        <span className='delete' onClick={() => pluginCall('deleteBranch', name)}>
+          <img src="delete.svg" title='Delete the branch' />
+        </span>
+      </div>
+    )
+  }
 }
 
-class Branches extends React.Component {
+class Branches extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -41,21 +43,23 @@ class Branches extends React.Component {
     }
   }
 
-  render () {
+  render (props, {ready, branches, currentBranch}) {
     return (
       <div>
-        <button onClick={() => pluginCall('createBranch')} className="create">
-          Create a new branch
-        </button>
-        {!this.state.ready && 'loading...'}
-        {(this.state.branches || []).map((name) =>
+        <Portal>
+          <button onClick={() => pluginCall('createBranch')} className="create">
+            Create a new branch
+          </button>
+        </Portal>
+        {!ready && 'loading...'}
+        {(branches || []).map((name) =>
           <Branch key={name}
             name={name}
-            selected={name === this.state.currentBranch} />
+            selected={name === currentBranch} />
         )}
       </div>
     )
   }
 }
 
-ReactDOM.render(<Branches />, document.getElementById('container'))
+render(<Branches />, document.getElementById('container'))

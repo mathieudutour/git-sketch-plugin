@@ -5,7 +5,8 @@
   "main": "Git.sketchplugin",
   "manifest": "src/manifest.json",
   "resources": [
-    "Resources/branches.js"
+    "Resources/branches.js",
+    "Resources/preferences.js"
   ],
   "directories": {
     "doc": "docs",
@@ -29,6 +30,7 @@
   "homepage": "https://github.com/mathieudutour/git-sketch-plugin#readme",
   "devDependencies": {
     "babel-core": "^6.18.2",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "eslint": "^3.10.2",
@@ -40,11 +42,10 @@
     "skpm": "^0.4.4"
   },
   "dependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "preact": "^7.1.0",
     "sketch-module-google-analytics": "^0.1.3",
     "sketch-module-update": "^0.1.2",
-    "sketch-module-user-preferences": "^0.2.0",
+    "sketch-module-user-preferences": "^0.2.3",
     "sketch-module-web-view": "^0.1.2"
   }
 }
