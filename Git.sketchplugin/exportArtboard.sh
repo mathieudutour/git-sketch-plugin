@@ -20,12 +20,12 @@ mv "$FILE_FOLDER" .oldArtboards 2>/dev/null
 IGNORE=$([ -e .sketchignore ] && (cat .sketchignore | sed '/^$/d' | sed 's/^/^/' | sed 's/$/$/' | tr '\n' ',') || echo "")
 
 # get list of artboard names to export
-ARTBOARDS=$($BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
+ARTBOARDS=$($BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" --include-symbols=YES | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
 
 
 # generate new artboards
 mkdir -p "$FILE_FOLDER"
-$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES --items="$ARTBOARDS"
+$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES --items="$ARTBOARDS" --include-symbols=YES
 
 # Construct a ${FILENAME}-boards.md file which shows all the artboards in the sketch directory
 if [[ ${INCLUDE_OVERVIEW} == "true" ]]
