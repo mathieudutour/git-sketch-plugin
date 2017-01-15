@@ -7,28 +7,33 @@ export default function (context) {
   executeSafely(context, function () {
     sendEvent(context, 'Preferences', 'Open preferences')
     const preferences = getUserPreferences()
-    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 275))
+    var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 325))
 
-    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 250, 300, 20))
+    var textExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 300, 300, 20))
     textExport.string = 'Folder where the pretty diffs will be exported'
     textExport.drawsBackground = false
     textExport.editable = false
-    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0, 225, 300, 25))
+    var input = NSTextField.alloc().initWithFrame(NSMakeRect(0, 275, 300, 25))
     input.stringValue = preferences.exportFolder
     input.editable = true
 
-    var scaleExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 200, 300, 20))
+    var scaleExport = NSTextView.alloc().initWithFrame(NSMakeRect(0, 250, 300, 20))
     scaleExport.string = 'Scale of the exported artboards'
     scaleExport.drawsBackground = false
     scaleExport.editable = false
-    var inputScale = NSTextField.alloc().initWithFrame(NSMakeRect(0, 175, 300, 25))
+    var inputScale = NSTextField.alloc().initWithFrame(NSMakeRect(0, 225, 300, 25))
     inputScale.stringValue = preferences.exportScale
     inputScale.editable = true
 
-    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0, 125, 300, 25))
+    var checkboxDiff = NSButton.alloc().initWithFrame(NSMakeRect(0, 175, 300, 25))
     checkboxDiff.setButtonType(3)
     checkboxDiff.title = 'Generate pretty diff by default'
     checkboxDiff.state = preferences.diffByDefault ? 1 : 0
+
+    var checkboxOverview = NSButton.alloc().initWithFrame(NSMakeRect(0, 125, 300, 25))
+    checkboxOverview.setButtonType(3)
+    checkboxOverview.title = 'Save an overview file with rendered artboards'
+    checkboxOverview.state = preferences.includeOverviewFile ? 1 : 0
 
     var textTerminal = NSTextView.alloc().initWithFrame(NSMakeRect(0, 75, 300, 20))
     textTerminal.string = 'Terminal App'
@@ -48,6 +53,7 @@ export default function (context) {
     accessory.addSubview(scaleExport)
     accessory.addSubview(inputScale)
     accessory.addSubview(checkboxDiff)
+    accessory.addSubview(checkboxOverview)
     accessory.addSubview(textTerminal)
     accessory.addSubview(select)
     accessory.addSubview(checkboxAnalytics)
@@ -69,6 +75,7 @@ export default function (context) {
         exportFolder: message,
         exportScale: scale,
         diffByDefault: checkboxDiff.state() == 1,
+        includeOverviewFile: checkboxOverview.state() == 1,
         terminal: select.indexOfSelectedItem() == 1 ? 'iTerm' : 'Terminal',
         sendAnalytics: checkboxAnalytics.state() == 1
       })
