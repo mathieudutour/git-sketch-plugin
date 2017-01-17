@@ -19,6 +19,7 @@ From ...
 ## Requirements
 * [Sketch](http://sketchapp.com/) >= 3.4 (**not** with the sandboxed version ie from the App Store).
 * [Git](https://git-scm.com/) (coming with OS X so you shouldn't have to do anything)
+* [Xcode Command Line Tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/)
 
 ## Installation
 
