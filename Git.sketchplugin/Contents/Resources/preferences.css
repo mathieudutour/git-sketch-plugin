@@ -1,0 +1,35 @@
+body {
+  font-family: -apple-system;
+}
+
+.save {
+  position: fixed;
+  width: 100%;
+  bottom: 23px;
+  left: 0;
+  border: 0;
+  border-radius: 0;
+  height: 40px;
+  background-image: linear-gradient(180deg, #8F779D, #613B75);
+  color: white;
+  letter-spacing: 0.3px;
+  font-size: 13px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#container {
+  margin-bottom: 70px;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+input[type="text"] {
+  display: block;
+}
+
+.form {
+  padding-top: 10px;
+}

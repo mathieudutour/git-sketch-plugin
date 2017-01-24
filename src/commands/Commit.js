@@ -1,12 +1,12 @@
 // Commits all working file to git (cmd alt ctrl c)
-import { sendEvent, sendError } from '../analytics'
-import { getCurrentBranch, checkForFile, createFailAlert, exec, createInputWithCheckbox, exportArtboards, getCurrentFileName } from '../common'
+import { sendEvent } from '../analytics'
+import { getCurrentBranch, checkForFile, executeSafely, exec, createInputWithCheckbox, exportArtboards, getCurrentFileName } from '../common'
 import { getUserPreferences } from '../preferences'
 import { exportToJSON } from 'sketch-module-json-sync'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
-  try {
+  executeSafely(context, function () {
     sendEvent(context, 'Commit', 'Start commiting')
     var currentBranch = getCurrentBranch(context)
     var commitMsg = createInputWithCheckbox(context, 'Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', getUserPreferences().diffByDefault, 'Commit')
@@ -23,8 +23,5 @@ export default function (context) {
       var message = exec(context, command)
       context.document.showMessage(message.split('\n').join(' '))
     }
-  } catch (e) {
-    sendError(context, e)
-    createFailAlert(context, 'Failed...', e, true)
-  }
+  })
 }

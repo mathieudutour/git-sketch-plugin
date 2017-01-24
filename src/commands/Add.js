@@ -1,10 +1,10 @@
 // Add this file to the repo
-import { sendEvent, sendError } from '../analytics'
-import { getCurrentFileName, checkForFile, createFailAlert, exec } from '../common'
+import { sendEvent } from '../analytics'
+import { getCurrentFileName, checkForFile, executeSafely, exec } from '../common'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
-  try {
+  executeSafely(context, function () {
     sendEvent(context, 'Add', 'add current file')
     var currentFileName = getCurrentFileName(context)
     if (currentFileName) {
@@ -12,8 +12,5 @@ export default function (context) {
       exec(context, command)
       context.document.showMessage('File added to git')
     }
-  } catch (e) {
-    sendError(context, e)
-    createFailAlert(context, 'Failed...', e, true)
-  }
+  })
 }

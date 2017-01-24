@@ -1,3 +1,20 @@
+## [0.9.0] - 2017-01-15
+
+* Add an overview md file next to each sketch file (thanks @philschatz)
+* Improve UI to manage preferences
+
+
+## [0.8.5] - 2017-01-14
+
+* Fix typos causing a bunch of commands to fail (silly me) (thanks @philschatz)
+
+
+## [0.8.4] - 2017-01-08
+
+* Add UI to manage branches
+* Make the plugin compatible with Sketch Runner
+
+
 ## [0.8.3] - 2016-12-01
 
 * Fix typo in analytics

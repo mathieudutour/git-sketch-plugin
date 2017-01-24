@@ -9,3 +9,4 @@ parserOptions:
   sourceType: module
   ecmaFeatures:
     experimentalObjectRestSpread: true
+    jsx: true

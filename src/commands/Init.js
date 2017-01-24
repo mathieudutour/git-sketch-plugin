@@ -1,10 +1,10 @@
 // Init git repo and add current file to the repo (cmd alt ctrl n)
-import { sendEvent, sendError } from '../analytics'
-import { checkForFile, getCurrentFileName, createFailAlert, exec, createInput } from '../common'
+import { sendEvent } from '../analytics'
+import { checkForFile, getCurrentFileName, executeSafely, exec, createInput, createFailAlert } from '../common'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
-  try {
+  executeSafely(context, function () {
     var currentFileName = getCurrentFileName(context)
     if (currentFileName) {
       sendEvent(context, 'Init', 'Start init')
@@ -24,8 +24,5 @@ export default function (context) {
     } else {
       createFailAlert(context, 'Failed...', 'Cannot get the current file name')
     }
-  } catch (e) {
-    sendError(context, e)
-    createFailAlert(context, 'Failed...', e, true)
-  }
+  })
 }

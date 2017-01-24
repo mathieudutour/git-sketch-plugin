@@ -7,6 +7,15 @@ export function setIconForAlert (context, alert) {
     context.plugin.urlForResourceNamed('icon.png').path()))
 }
 
+export function executeSafely (context, func) {
+  try {
+    func(context)
+  } catch (e) {
+    sendError(context, e)
+    createFailAlert(context, 'Failed...', e, true)
+  }
+}
+
 export function exec (context, command) {
   var task = NSTask.alloc().init()
   var pipe = NSPipe.pipe()
@@ -159,10 +168,11 @@ export function exportArtboards (context) {
   const currentFileName = getCurrentFileName(context)
   const path = getCurrentDirectory(context)
   const currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '')
-  const {exportFolder, exportScale} = getUserPreferences()
+  const {exportFolder, exportScale, includeOverviewFile} = getUserPreferences()
   const pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')
   const fileFolder = exportFolder + '/' + currentFileNameWithoutExtension
-  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${exportScale}"`
+
+  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${exportScale}" "${includeOverviewFile}"`
   return exec(context, command)
 }
 
