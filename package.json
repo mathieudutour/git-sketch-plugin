@@ -1,6 +1,6 @@
 {
   "name": "git-sketch-plugin",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Plugin to handle versioning in git",
   "main": "Git.sketchplugin",
   "manifest": "src/manifest.json",
@@ -44,8 +44,8 @@
   "dependencies": {
     "preact": "^7.1.0",
     "sketch-module-google-analytics": "^0.1.3",
-    "sketch-module-json-sync": "^0.1.3",
-    "sketch-module-update": "^0.1.2",
+    "sketch-module-json-sync": "^0.2.0",
+    "sketch-module-update": "^0.1.4",
     "sketch-module-user-preferences": "^0.2.3",
     "sketch-module-web-view": "^0.1.2"
   }

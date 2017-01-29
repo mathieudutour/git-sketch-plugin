@@ -13,7 +13,7 @@
       "script": "./commands/update.js",
       "handlers" : {
         "actions": {
-          "OpenDocument": "onOpenDocument"
+          "OpenDocument": "onRun"
         }
       }
     },

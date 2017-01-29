@@ -1,0 +1,11 @@
+{
+  "objectId": "F194E88A-496C-4E43-BD92-E889F3CDB812",
+  "name": "test",
+  "index": 1,
+  "styles": {
+    "textAlign": "left",
+    "fontFamily": "LucidaGrande-Bold",
+    "fontSize": 24,
+    "color": "#DE1414"
+  }
+}

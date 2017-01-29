@@ -1,0 +1,26 @@
+{
+  "objectId": "2CDB1000-A05D-4F43-A0E7-0EC33FD647C2",
+  "type": "text",
+  "className": "MSTextLayer",
+  "name": "Type something",
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "45.000",
+        "y": "55.000"
+      },
+      "size": {
+        "width": "75.000",
+        "height": "11.000"
+      }
+    },
+    "paragraphSpacing": "20.000",
+    "textAlign": "left",
+    "fontFamily": "LucidaGrande-Bold",
+    "fontSize": 9,
+    "color": "#000000",
+    "content": "Type something",
+    "textBehaviour": "auto"
+  },
+  "index": 1
+}

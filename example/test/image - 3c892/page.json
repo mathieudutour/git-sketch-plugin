@@ -1,0 +1,20 @@
+{
+  "objectId": "C536277A-4AFF-4DC1-8448-D80625440923",
+  "type": "page",
+  "className": "MSPage",
+  "name": "image",
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "-99.000",
+        "y": "-148.000"
+      },
+      "size": {
+        "width": "367.000",
+        "height": "308.000"
+      }
+    }
+  },
+  "clickThrough": true,
+  "index": 2
+}
