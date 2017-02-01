@@ -1,5 +1,8 @@
 # FAQ
 
+## [I installed the plugin but it's not showing in the Sketch plugin menu?](https://github.com/mathieudutour/git-sketch-plugin/issues/77)
+Make sure that you downloaded the plugin from the releases page: https://github.com/mathieudutour/git-sketch-plugin/releases.
+
 ## What exactly are the pretty diffs?
 The plugin is generating one png per artboard, independently of wether they are in the same page or not. Just be careful if some of your artboards have the same name (only the last one will be generated).
 Those generated images are in a hidden folder and Github will pick them up to show the changes between commits ([example](https://github.com/mathieudutour/git-sketch-plugin/pull/1/files))
