@@ -4,7 +4,8 @@
   "authorEmail" : "mathieu@dutour.me",
   "identifier": "me.dutour.mathieu.git-plugin",
   "compatibleVersion": 3,
-  "bundleVersion": 2,
+  "bundleVersion": 1,
+  "disableCocoaScriptPreprocessor": true,
   "commands": [
     {
       "name": "update",
@@ -12,7 +13,7 @@
       "script": "./commands/update.js",
       "handlers" : {
         "actions": {
-          "OpenDocument": "onOpenDocument"
+          "OpenDocument": "onRun"
         }
       }
     },
@@ -48,9 +49,14 @@
       "icon" : "icons/pull.png"
     },
     {
-      "name": "Generate files for pretty diffs",
+      "name": "Export sketch file to JSON",
       "identifier": "export",
       "script": "./commands/Export.js"
+    },
+    {
+      "name": "Import sketch file from JSON",
+      "identifier": "import",
+      "script": "./commands/Import.js"
     },
     {
       "name": "Add file to git",
@@ -85,6 +91,7 @@
         "items": [
           "init",
           "export",
+          "import",
           "add",
           "terminal"
         ]

@@ -2,6 +2,7 @@
 import { sendEvent } from '../analytics'
 import { getCurrentBranch, checkForFile, exec, executeSafely, createInput } from '../common'
 import WebUI from 'sketch-module-web-view'
+import { importFromJSON } from 'sketch-module-json-sync'
 
 export default function (context) {
   if (!checkForFile(context)) { return }
@@ -24,9 +25,8 @@ export default function (context) {
               sendEvent(context, 'Branch', 'Switch branch', 'Did switch branch')
               var command = 'git checkout -q ' + name
               exec(context, command)
-              var app = NSApp.delegate()
-              app.refreshCurrentDocument()
               webUI.panel.close()
+              importFromJSON(context)
               context.document.showMessage(`Switched to branch '${name}'`)
             })
           },

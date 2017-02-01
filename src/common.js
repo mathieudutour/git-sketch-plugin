@@ -35,12 +35,12 @@ export function exec (context, command) {
 
   if (task.terminationStatus() != 0) {
     const message = errData != null && errData.length()
-      ? NSString.alloc().initWithData_encoding_(errData, NSUTF8StringEncoding)
+      ? ('' + NSString.alloc().initWithData_encoding_(errData, NSUTF8StringEncoding)).replace('(B[m', '')
       : 'Unknow error'
     return NSException.raise_format_('failed', message)
   }
 
-  return NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding)
+  return ('' + NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding)).replace('(B[m', '')
 }
 
 export function getCurrentDirectory (context) {
@@ -154,8 +154,7 @@ export function createSelect (context, msg, items, selectedItemIndex, okLabel, c
 }
 
 export function getCurrentBranch (context) {
-  const path = getCurrentDirectory(context)
-  const currentBranchCommand = `cd "${path}" && git rev-parse --abbrev-ref HEAD`
+  const currentBranchCommand = 'git rev-parse --abbrev-ref HEAD'
   let branch
   try {
     branch = exec(context, currentBranchCommand).split('\n')[0]

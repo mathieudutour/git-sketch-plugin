@@ -1,0 +1,19 @@
+{
+  "objectId": "82143BC0-932C-4C31-B22F-55B121AFFCDB",
+  "type": "page",
+  "className": "MSPage",
+  "name": "Ignored page",
+  "index": 2,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "-101.000",
+        "y": "-131.000"
+      },
+      "size": {
+        "width": "437.000",
+        "height": "559.000"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "objectId": "E63B1FCC-1B43-4BCD-8D85-95C1F14A4549",
+  "type": "text",
+  "className": "MSTextLayer",
+  "name": "symbol",
+  "index": 1,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "44.000",
+        "y": "35.000"
+      },
+      "size": {
+        "width": "117.000",
+        "height": "48.000"
+      }
+    },
+    "fontFamily": "Roboto-Light",
+    "fontSize": "36",
+    "color": "#000000",
+    "textBehaviour": "auto",
+    "textAlign": "center",
+    "content": "symbol"
+  }
+}

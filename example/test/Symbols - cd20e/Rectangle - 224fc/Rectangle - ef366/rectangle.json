@@ -1,0 +1,33 @@
+{
+  "objectId": "5C034928-A3D5-4FA5-9A30-32B71A8EC81E",
+  "type": "rectangle",
+  "className": "MSShapeGroup",
+  "name": "Rectangle",
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "0.000",
+        "y": "0.000"
+      },
+      "size": {
+        "width": "168.000",
+        "height": "117.000"
+      }
+    },
+    "backgrounds": [
+      {
+        "type": "color",
+        "color": "#D8D8D8"
+      }
+    ],
+    "borders": [
+      {
+        "type": "color",
+        "color": "#979797",
+        "position": "inside",
+        "thickness": 1
+      }
+    ]
+  },
+  "index": 2
+}

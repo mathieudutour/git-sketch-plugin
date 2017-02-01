@@ -1,0 +1,25 @@
+{
+  "objectId": "BA9A573E-935E-4B99-AD54-AD3ED3BE0D1E",
+  "type": "text",
+  "className": "MSTextLayer",
+  "name": "ignored",
+  "index": 1,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "143.000",
+        "y": "127.000"
+      },
+      "size": {
+        "width": "119.000",
+        "height": "48.000"
+      }
+    },
+    "fontFamily": "Roboto-Light",
+    "fontSize": "36",
+    "color": "#000000",
+    "textBehaviour": "auto",
+    "textAlign": "center",
+    "content": "ignored"
+  }
+}

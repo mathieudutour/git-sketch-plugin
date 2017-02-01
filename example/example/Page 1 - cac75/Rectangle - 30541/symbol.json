@@ -1,0 +1,20 @@
+{
+  "objectId": "54CC4C0D-558C-4CCE-B544-1822264EDADE",
+  "type": "symbol",
+  "className": "MSSymbolInstance",
+  "name": "Rectangle",
+  "index": 1,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "1287.000",
+        "y": "238.000"
+      },
+      "size": {
+        "width": "205.000",
+        "height": "127.000"
+      }
+    }
+  },
+  "symbolId": "3E96F136-0662-4CB2-AE49-6BCD68FB6609"
+}

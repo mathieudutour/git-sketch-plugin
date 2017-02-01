@@ -1,0 +1,21 @@
+{
+  "objectId": "A4158F73-FDA1-4A7A-B88D-056EE68A05DE",
+  "type": "symbolMaster",
+  "className": "MSSymbolMaster",
+  "name": "Rectangle",
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "100.000",
+        "y": "0.000"
+      },
+      "size": {
+        "width": "168.000",
+        "height": "117.000"
+      }
+    }
+  },
+  "clickThrough": true,
+  "symbolId": "FEF964B7-0055-46BC-9AB3-148B04DAB0C4",
+  "index": 1
+}

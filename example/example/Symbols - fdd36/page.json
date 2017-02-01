@@ -1,0 +1,19 @@
+{
+  "objectId": "F8E9F316-D12F-469A-B691-9F899762BEF6",
+  "type": "page",
+  "className": "MSPage",
+  "name": "Symbols",
+  "index": 1,
+  "styles": {
+    "bounds": {
+      "origin": {
+        "x": "100.000",
+        "y": "0.000"
+      },
+      "size": {
+        "width": "205.000",
+        "height": "127.000"
+      }
+    }
+  }
+}
