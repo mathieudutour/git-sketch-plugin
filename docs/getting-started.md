@@ -4,7 +4,7 @@ Once:
 * Add all the sketch files you are working on the repo (`Plugins > Git > Advanced > Add file to git`)
 
 Then:
-* Create a new branch when you start working on a new feature (`Plugins > Git > New branch`)
+* Create a new branch when you start working on a new feature (`Plugins > Git > Branches`)
 * Work normally on your design
 * Save the file
 * Commit the changes with a meaningful message describing them. The plugin will extract the artboards in your file in order to show the differences easily. (`Plugins > Git > Commit`)
