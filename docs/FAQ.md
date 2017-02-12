@@ -23,3 +23,19 @@ If you still have an issue, [open a new one](https://github.com/mathieudutour/gi
 ## I get `xcrun error: cannot be used within an App Sandbox.` whenever I try to use the plugin, what do I do?
 
 The plugin doesn't work with the app from the Mac App Store. It needs to access git and the file system which is impossible on a sandboxed app.
+
+## I get `Failed... gpg: cannot open '/dev/tty': Device not configured` when I try to commit, what do I do?
+
+You are signing your commits with PGP/GPG, which is great! Yet, you just hit a [common issue with GnuPG
+(https://github.com/Microsoft/vscode/issues/5065) (cf. #93). As a workaround, you can tell GnuPG to never
+use the `TTY`:
+
+    $ echo 'no-tty' >> ~/.gnupg/gpg.conf
+
+More information about this option:
+
+> --no-tty
+> Make sure that the TTY (terminal) is never used for any output. This option is needed in some cases because
+> GnuPG sometimes prints ?? warnings to the TTY even if --batch is used.
+
+Note: this option will **not** disable GPG signed commits. Nonetheless, `gpg` will be slightly less verbose.
