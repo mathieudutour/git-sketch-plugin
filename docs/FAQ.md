@@ -26,8 +26,7 @@ The plugin doesn't work with the app from the Mac App Store. It needs to access 
 
 ## I get `Failed... gpg: cannot open '/dev/tty': Device not configured` when I try to commit, what do I do?
 
-You are signing your commits with PGP/GPG, which is great! Unfortunately, you just hit a [common issue with GnuPG]
-(https://github.com/Microsoft/vscode/issues/5065) (cf. #93). As a workaround, you can tell GnuPG to never
+You are signing your commits with PGP/GPG, which is great! Unfortunately, you just hit a [common issue with GnuPG](https://github.com/Microsoft/vscode/issues/5065) (cf. #93). As a workaround, you can tell GnuPG to never
 use the `TTY`:
 
     $ echo 'no-tty' >> ~/.gnupg/gpg.conf
