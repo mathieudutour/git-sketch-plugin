@@ -29,7 +29,7 @@ From ...
 * Un-zip
 * Double-click on Git.sketchplugin
 
-## Install with Sketch Runner (simplest)
+### Install with Sketch Runner (simplest)
 
 With Sketch Runner, just go to the `install` command and search for `Git`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
 
