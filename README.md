@@ -33,6 +33,8 @@ From ...
 
 With Sketch Runner, just go to the `install` command and search for `Git`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
 
+![Install with Sketch Runner](example/git-runner.png)
+
 
 ### From the sources
 
