@@ -5,8 +5,9 @@ EXPORT_FOLDER="$2"
 FILE_FOLDER="$3"
 BUNDLE_PATH="$4"
 FILENAME="$5"
-SCALE="$6"
-INCLUDE_OVERVIEW="$7"
+FORMAT="$6"
+SCALE="$7"
+INCLUDE_OVERVIEW="$8"
 
 
 cd "$DIR_PATH"
@@ -25,7 +26,7 @@ ARTBOARDS=$($BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool list artbo
 
 # generate new artboards
 mkdir -p "$FILE_FOLDER"
-$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES --items="$ARTBOARDS" --include-symbols=YES
+$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --formats="$FORMAT" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES --items="$ARTBOARDS" --include-symbols=YES
 
 # Construct a ${FILENAME}-boards.md file which shows all the artboards in the sketch directory
 if [[ ${INCLUDE_OVERVIEW} == "true" ]]
