@@ -5,6 +5,7 @@ const keyPref = 'gitSketch'
 export function getUserPreferences () {
   return prefsManager.getUserPreferences(keyPref, {
     exportFolder: '.exportedArtboards',
+    exportFormat: 'png',
     exportScale: '1.0',
     terminal: 'Terminal',
     diffByDefault: true,

@@ -41,6 +41,16 @@ class Preferences extends Component {
           <input type="number" value={preferences.exportScale} id="scale" onInput={this.linkState('preferences.exportScale')} />
         </div>
         <div className="form">
+          <label htmlFor="format">Format of the exported artboards</label>
+          <select id="form" value={preferences.exportFormat} onChange={this.linkState('preferences.exportFormat')}>
+            <option value="png">PNG</option>
+            <option value="jpg">JPG</option>
+            <option value="pdf">PDF</option>
+            <option value="eps">EPS</option>
+            <option value="svg">SVG</option>
+          </select>
+        </div>
+        <div className="form">
           <input type="checkbox" checked={preferences.diffByDefault} id="diffByDefault" onChange={this.linkState('preferences.diffByDefault')} />
           <label htmlFor="diffByDefault"> Generate pretty diff by default</label>
         </div>
