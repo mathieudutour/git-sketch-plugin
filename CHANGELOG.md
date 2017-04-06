@@ -1,3 +1,14 @@
+## [0.9.2] - 2017-04-06
+
+* Added support for multiple file formats (png, jpg, pdf, eps, svg)
+  for the pretty diff images (thanls @grrtbrtr)
+
+
+## [0.9.1] - 2017-02-12
+
+* Update web-view dependency
+
+
 ## [0.9.0] - 2017-01-15
 
 * Add an overview md file next to each sketch file (thanks @philschatz)
