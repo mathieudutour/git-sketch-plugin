@@ -35,7 +35,7 @@ export default class Portal extends Component {
 
     this.remote = render((
       <PortalProxy context={this.context}>
-        { show && this.props.children || null }
+        { (show && this.props.children) || null }
       </PortalProxy>
     ), this.into, this.remote)
   }
@@ -52,6 +52,6 @@ class PortalProxy extends Component {
     return this.props.context
   }
   render ({ children }) {
-    return children && children[0] || null
+    return (children && children[0]) || null
   }
 }

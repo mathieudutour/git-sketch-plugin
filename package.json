@@ -13,7 +13,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint -c ./.eslintrc src/ && eslint -c ./.eslintrc Resources/",
     "postinstall": "npm run build && skpm link ./",
     "build": "skpm build",
     "publish": "skpm publish"
@@ -33,19 +33,23 @@
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
-    "eslint": "^3.10.2",
-    "eslint-config-sketch": "^0.1.0",
-    "eslint-config-standard": "^6.2.1",
+    "eslint": "^3.19.0",
+    "eslint-config-sketch": "^0.2.0",
+    "eslint-config-standard": "^10.2.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "skpm": "^0.4.4"
+    "eslint-plugin-node": "4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "skpm": "^0.7.4"
   },
   "dependencies": {
+    "eslint-config-sketch": "0.2.2",
+    "eslint-config-standard-preact": "1.0.1",
+    "eslint-plugin-react": "6.10.3",
     "preact": "^7.1.0",
     "sketch-module-google-analytics": "^0.1.3",
     "sketch-module-update": "^0.1.2",
     "sketch-module-user-preferences": "^0.2.3",
-    "sketch-module-web-view": "0.1.3"
+    "sketch-module-web-view": "0.1.4"
   }
 }

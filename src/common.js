@@ -173,7 +173,7 @@ export function exportArtboards (context) {
   const pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')
   const fileFolder = exportFolder + '/' + currentFileNameWithoutExtension
 
-  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${exportFormat}" "${exportScale}" "${includeOverviewFile}"`
+  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${exportFormat || 'png'}" "${exportScale}" "${includeOverviewFile}"`
   return exec(context, command)
 }
 

@@ -14,7 +14,7 @@ class Branch extends Component {
           {name}
         </span>
         <span className='delete' onClick={() => pluginCall('deleteBranch', name)}>
-          <img src="delete.svg" title='Delete the branch' />
+          <img src='delete.svg' title='Delete the branch' />
         </span>
       </div>
     )
@@ -32,11 +32,11 @@ class Branches extends Component {
     if (!window.ready) {
       const interval = setInterval(() => {
         if (window.ready) {
-          this.state = {
+          this.setState({
             branches: (window.branches || []).map(cleanBranchName),
             currentBranch: cleanBranchName(window.currentBranch),
             ready: window.ready
-          }
+          })
           clearInterval(interval)
         }
       }, 100)
@@ -47,7 +47,7 @@ class Branches extends Component {
     return (
       <div>
         <Portal>
-          <button onClick={() => pluginCall('createBranch')} className="create">
+          <button onClick={() => pluginCall('createBranch')} className='create'>
             Create a new branch
           </button>
         </Portal>

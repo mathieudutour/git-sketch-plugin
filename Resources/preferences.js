@@ -12,10 +12,10 @@ class Preferences extends Component {
     if (!window.ready) {
       const interval = setInterval(() => {
         if (window.ready) {
-          this.state = {
+          this.setState({
             preferences: window.preferences || {},
             ready: window.ready
-          }
+          })
           clearInterval(interval)
         }
       }, 100)
@@ -26,49 +26,49 @@ class Preferences extends Component {
     return (
       <div>
         <Portal>
-          <button onClick={() => pluginCall('savePreferences', preferences)} className="save">
+          <button onClick={() => pluginCall('savePreferences', preferences)} className='save'>
             Save Preferences
           </button>
         </Portal>
         {!ready && 'loading...'}
         <h2>Diffs preferences</h2>
-        <div className="form">
-          <label htmlFor="folder">Folder where the pretty diffs will be exported</label>
-          <input type="text" value={preferences.exportFolder} id="folder" onInput={this.linkState('preferences.exportFolder')} />
+        <div className='form'>
+          <label htmlFor='folder'>Folder where the pretty diffs will be exported</label>
+          <input type='text' value={preferences.exportFolder} id='folder' onInput={this.linkState('preferences.exportFolder')} />
         </div>
-        <div className="form">
-          <label htmlFor="scale">Scale of the exported artboards</label>
-          <input type="number" value={preferences.exportScale} id="scale" onInput={this.linkState('preferences.exportScale')} />
+        <div className='form'>
+          <label htmlFor='scale'>Scale of the exported artboards</label>
+          <input type='number' value={preferences.exportScale} id='scale' onInput={this.linkState('preferences.exportScale')} />
         </div>
-        <div className="form">
-          <label htmlFor="format">Format of the exported artboards</label>
-          <select id="form" value={preferences.exportFormat} onChange={this.linkState('preferences.exportFormat')}>
-            <option value="png">PNG</option>
-            <option value="jpg">JPG</option>
-            <option value="pdf">PDF</option>
-            <option value="eps">EPS</option>
-            <option value="svg">SVG</option>
+        <div className='form'>
+          <label htmlFor='format'>Format of the exported artboards</label>
+          <select id='form' value={preferences.exportFormat} onChange={this.linkState('preferences.exportFormat')}>
+            <option value='png'>PNG</option>
+            <option value='jpg'>JPG</option>
+            <option value='pdf'>PDF</option>
+            <option value='eps'>EPS</option>
+            <option value='svg'>SVG</option>
           </select>
         </div>
-        <div className="form">
-          <input type="checkbox" checked={preferences.diffByDefault} id="diffByDefault" onChange={this.linkState('preferences.diffByDefault')} />
-          <label htmlFor="diffByDefault"> Generate pretty diff by default</label>
+        <div className='form'>
+          <input type='checkbox' checked={preferences.diffByDefault} id='diffByDefault' onChange={this.linkState('preferences.diffByDefault')} />
+          <label htmlFor='diffByDefault'> Generate pretty diff by default</label>
         </div>
-        <div className="form">
-          <input type="checkbox" checked={preferences.includeOverviewFile} id="includeOverviewFile" onChange={this.linkState('preferences.includeOverviewFile')} />
-          <label htmlFor="includeOverviewFile"> Save an overview file with rendered artboards</label>
+        <div className='form'>
+          <input type='checkbox' checked={preferences.includeOverviewFile} id='includeOverviewFile' onChange={this.linkState('preferences.includeOverviewFile')} />
+          <label htmlFor='includeOverviewFile'> Save an overview file with rendered artboards</label>
         </div>
         <h2>Miscellaneous</h2>
-        <div className="form">
-          <label htmlFor="terminal">Terminal App</label>
-          <select id="terminal" value={preferences.terminal} onChange={this.linkState('preferences.terminal')}>
-            <option value="Terminal">Terminal</option>
-            <option value="iTerm">iTerm</option>
+        <div className='form'>
+          <label htmlFor='terminal'>Terminal App</label>
+          <select id='terminal' value={preferences.terminal} onChange={this.linkState('preferences.terminal')}>
+            <option value='Terminal'>Terminal</option>
+            <option value='iTerm'>iTerm</option>
           </select>
         </div>
-        <div className="form">
-          <input type="checkbox" checked={preferences.sendAnalytics} id="sendAnalytics" onChange={this.linkState('preferences.sendAnalytics')} />
-          <label htmlFor="sendAnalytics"> Send anymous usage data to improve the plugin</label>
+        <div className='form'>
+          <input type='checkbox' checked={preferences.sendAnalytics} id='sendAnalytics' onChange={this.linkState('preferences.sendAnalytics')} />
+          <label htmlFor='sendAnalytics'> Send anymous usage data to improve the plugin</label>
         </div>
       </div>
     )
