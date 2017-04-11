@@ -4,7 +4,7 @@ import { getUserPreferences } from './preferences'
 const key = 'UA-88206962-1'
 
 export function sendEvent (context, category, action, label, value) {
-  const { sendAnalytics } = getUserPreferences()
+  const { sendAnalytics } = getUserPreferences(context)
   if (!sendAnalytics) { return }
   const payload = {}
   if (category) { payload.ec = category }
@@ -16,7 +16,7 @@ export function sendEvent (context, category, action, label, value) {
 }
 
 export function sendError (context, error) {
-  const { sendAnalytics } = getUserPreferences()
+  const { sendAnalytics } = getUserPreferences(context)
   if (!sendAnalytics) { return }
   return send(context, key, 'event', {exd: error})
 }

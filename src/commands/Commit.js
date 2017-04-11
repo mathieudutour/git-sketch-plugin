@@ -8,12 +8,13 @@ export default function (context) {
   executeSafely(context, function () {
     sendEvent(context, 'Commit', 'Start commiting')
     var currentBranch = getCurrentBranch(context)
-    var commitMsg = createInputWithCheckbox(context, 'Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', getUserPreferences().diffByDefault, 'Commit')
+    const prefs = getUserPreferences(context)
+    var commitMsg = createInputWithCheckbox(context, 'Commit to "' + currentBranch + '"', 'Generate files for pretty diffs', prefs.diffByDefault, 'Commit')
 
     if (commitMsg.responseCode == 1000 && commitMsg.message != null) {
       if (commitMsg.checked) {
         sendEvent(context, 'Commit', 'Export artboards')
-        exportArtboards(context)
+        exportArtboards(context, prefs)
       }
       sendEvent(context, 'Commit', 'Do commit')
       var command = `git commit -m "${commitMsg.message.split('"').join('\\"')}" -a; exit`

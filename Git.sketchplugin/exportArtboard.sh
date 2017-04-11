@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e -o pipefail
 
 DIR_PATH="$1"
 EXPORT_FOLDER="$2"
@@ -11,22 +12,22 @@ INCLUDE_OVERVIEW="$8"
 
 
 cd "$DIR_PATH"
-mkdir -p "$EXPORT_FOLDER"
+mkdir -p "$EXPORT_FOLDER" || true
 
 # move old artboards to temp directory to compare them with the new ones
-rm -rf .oldArtboards
-mv "$FILE_FOLDER" .oldArtboards 2>/dev/null
+rm -rf .oldArtboards || true
+mv "$FILE_FOLDER" .oldArtboards || true
 
 # get list of artboards regex to ignore
 IGNORE=$([ -e .sketchignore ] && (cat .sketchignore | sed '/^$/d' | sed 's/^/^/' | sed 's/$/$/' | tr '\n' ',') || echo "")
 
 # get list of artboard names to export
-ARTBOARDS=$($BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" --include-symbols=YES | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
+ARTBOARDS=$("$BUNDLE_PATH"/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" --include-symbols=YES | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
 
 
 # generate new artboards
 mkdir -p "$FILE_FOLDER"
-$BUNDLE_PATH/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --formats="$FORMAT" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES --items="$ARTBOARDS" --include-symbols=YES
+"$BUNDLE_PATH"/Contents/Resources/sketchtool/bin/sketchtool export artboards "$FILENAME" --formats="$FORMAT" --scales="$SCALE" --output="$FILE_FOLDER" --overwriting=YES --items="$ARTBOARDS" --include-symbols=YES
 
 # Construct a ${FILENAME}-boards.md file which shows all the artboards in the sketch directory
 if [[ ${INCLUDE_OVERVIEW} == "true" ]]

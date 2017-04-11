@@ -1,6 +1,5 @@
 // Common library of things
 import { sendError } from './analytics'
-import { getUserPreferences } from './preferences'
 
 export function setIconForAlert (context, alert) {
   alert.setIcon(NSImage.alloc().initWithContentsOfFile(
@@ -34,9 +33,12 @@ export function exec (context, command) {
   const data = pipe.fileHandleForReading().readDataToEndOfFile()
 
   if (task.terminationStatus() != 0) {
-    const message = errData != null && errData.length()
-      ? NSString.alloc().initWithData_encoding_(errData, NSUTF8StringEncoding)
-      : 'Unknow error'
+    let message = 'Unknow error'
+    if (errData != null && errData.length()) {
+      message = NSString.alloc().initWithData_encoding_(errData, NSUTF8StringEncoding)
+    } else if (data != null && data.length()) {
+      message = NSString.alloc().initWithData_encoding_(data, NSUTF8StringEncoding)
+    }
     return NSException.raise_format_('failed', message)
   }
 
@@ -45,6 +47,10 @@ export function exec (context, command) {
 
 export function getCurrentDirectory (context) {
   return context.document.fileURL().URLByDeletingLastPathComponent().path()
+}
+
+export function getGitDirectory (context) {
+  return exec(context, 'git rev-parse --show-toplevel').trim().replace('(B[m', '')
 }
 
 export function getCurrentFileName (context) {
@@ -65,11 +71,14 @@ export function createFailAlert (context, title, error, buttonToReport) {
   var responseCode = alert.runModal()
 
   if (responseCode == 1001) {
-    var errorString
-    try {
-      errorString = JSON.stringify(error, null, '\t')
-    } catch (e) {
-      errorString = error
+    var errorString = error
+    if (typeof error === 'object') {
+      try {
+        errorString = JSON.stringify(error, null, '\t')
+        if (errorString === '{}') {
+          errorString = error
+        }
+      } catch (e) {}
     }
     var urlString = `https://github.com/mathieudutour/git-sketch-plugin/issues/new?body=${encodeURIComponent('### How did it happen?\n1.\n2.\n3.\n\n\n### Error log\n\n```\n' + errorString + '\n```')}`
     var url = NSURL.URLWithString(urlString)
@@ -165,15 +174,15 @@ export function getCurrentBranch (context) {
   return branch
 }
 
-export function exportArtboards (context) {
+export function exportArtboards (context, prefs) {
   const currentFileName = getCurrentFileName(context)
   const path = getCurrentDirectory(context)
   const currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '')
-  const {exportFolder, exportFormat, exportScale, includeOverviewFile} = getUserPreferences()
+  const {exportFolder, exportFormat, exportScale, includeOverviewFile} = prefs
   const pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.cocoascript$/, '').replace(/ /g, '\\ ')
+  const bundlePath = NSBundle.mainBundle().bundlePath()
   const fileFolder = exportFolder + '/' + currentFileNameWithoutExtension
-
-  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${NSBundle.mainBundle().bundlePath()}" "${currentFileName}" "${exportFormat || 'png'}" "${exportScale}" "${includeOverviewFile}"`
+  const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${bundlePath}" "${currentFileName}" "${exportFormat || 'png'}" "${exportScale}" "${includeOverviewFile}"`
   return exec(context, command)
 }
 

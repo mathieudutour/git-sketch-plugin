@@ -5,7 +5,7 @@ import { executeSafely } from '../common'
 import { getUserPreferences, setUserPreferences } from '../preferences'
 
 export default function (context) {
-  const preferences = getUserPreferences()
+  const preferences = getUserPreferences(context)
   const webUI = new WebUI(context, 'preferences.html', {
     identifier: 'git-sketch-plugin.preferences',
     width: 340,
@@ -16,7 +16,7 @@ export default function (context) {
       savePreferences (prefs) {
         executeSafely(context, function () {
           sendEvent(context, 'Preferences', 'Save preferences')
-          setUserPreferences(prefs)
+          setUserPreferences(context, prefs)
           webUI.panel.close()
           WebUI.clean()
           context.document.showMessage('Preferences updated')

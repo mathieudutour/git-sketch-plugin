@@ -1,3 +1,11 @@
+## [0.10.0] - 2017-04-11
+
+* move export config to `.gitsketchrc` so that everybody working
+  on the same file will have the same settings
+* fix the default config which could be break sometimes
+* fix exporting artboards when there is a space in the path to Sketch
+
+
 ## [0.9.2] - 2017-04-06
 
 * Added support for multiple file formats (png, jpg, pdf, eps, svg)

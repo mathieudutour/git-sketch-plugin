@@ -6,6 +6,6 @@ import { getUserPreferences } from '../preferences'
 export default function (context) {
   sendEvent(context, 'Terminal', 'Open terminal')
   const path = getCurrentDirectory(context)
-  const {terminal} = getUserPreferences()
+  const {terminal} = getUserPreferences(context)
   NSWorkspace.sharedWorkspace().openFile_withApplication_(path, terminal)
 }
