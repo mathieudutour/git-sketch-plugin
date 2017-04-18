@@ -1,3 +1,9 @@
+## [0.10.1] - 2017-04-18
+
+* Use webpack to compile everything instead of rollup. Should bring more stability.
+* Fix path to `exportArtboard.sh` script
+
+
 ## [0.10.0] - 2017-04-11
 
 * move export config to `.gitsketchrc` so that everybody working

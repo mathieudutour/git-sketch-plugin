@@ -1,11 +1,6 @@
 {
-  presets: [[
-      "es2015",
-      {
-        modules: false
-      }
-  ], "react"],
-  plugins: [
+  "presets": ["es2015", "react"],
+  "plugins": [
 		["transform-react-jsx", { "pragma":"h" }]
 	]
 }
