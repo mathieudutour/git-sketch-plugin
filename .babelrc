@@ -1,6 +1,7 @@
 {
   "presets": ["es2015", "react"],
   "plugins": [
-		["transform-react-jsx", { "pragma":"h" }]
+		["transform-react-jsx", { "pragma":"h" }],
+    "babel-plugin-add-module-exports"
 	]
 }

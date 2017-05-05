@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/mathieudutour/git-sketch-plugin#readme",
   "devDependencies": {
+    "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
@@ -39,7 +40,7 @@
     "eslint-plugin-node": "4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "skpm": "^0.8.1"
+    "skpm": "^0.9.7"
   },
   "dependencies": {
     "eslint-config-sketch": "^0.2.2",
