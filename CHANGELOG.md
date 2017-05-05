@@ -1,3 +1,9 @@
+## [0.11.0] - 2017-05-05
+
+* Fix export artboards when file name contains special character
+* Use a single sketchignore for entire repo which includes subdirectories
+
+
 ## [0.10.1] - 2017-04-18
 
 * Use webpack to compile everything instead of rollup. Should bring more stability.
