@@ -179,7 +179,7 @@ export function exportArtboards (context, prefs) {
   const path = getCurrentDirectory(context)
   const currentFileNameWithoutExtension = currentFileName.replace(/\.sketch$/, '')
   const {exportFolder, exportFormat, exportScale, includeOverviewFile} = prefs
-  const pluginPath = context.scriptPath.replace(/Contents\/Sketch\/(\w*)\.js$/, '').replace(/ /g, '\\ ')
+  const pluginPath = context.scriptPath.replace(/\/Contents\/Sketch\/(\w*)\.js$/, '').replace(/ /g, '\\ ')
   const bundlePath = NSBundle.mainBundle().bundlePath()
   const fileFolder = exportFolder + '/' + currentFileNameWithoutExtension
   const command = `${pluginPath}/exportArtboard.sh "${path}" "${exportFolder}" "${fileFolder}" "${bundlePath}" "${currentFileName}" "${exportFormat || 'png'}" "${exportScale}" "${includeOverviewFile}"`

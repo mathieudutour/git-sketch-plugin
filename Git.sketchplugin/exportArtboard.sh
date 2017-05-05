@@ -12,18 +12,30 @@ INCLUDE_OVERVIEW="$8"
 
 
 cd "$DIR_PATH"
+
+function upsearch {
+  slashes=${PWD//[^\/]/}
+  directory="$PWD"
+  for (( n=${#slashes}; n>0; --n ))
+  do
+    test -e "$directory/$1" && echo "$directory/$1" && return
+    directory="$directory/.."
+  done
+}
+
+SKETCH_IGNORE=$(upsearch ".sketchignore")
+
+# get list of artboards regex to ignore
+IGNORE=$([ -e "$SKETCH_IGNORE" ] && (cat "$SKETCH_IGNORE" | sed '/^$/d' | sed 's/^/^/' | sed 's/$/$/' | tr '\n' ',') || echo "")
+
+# get list of artboard names to export
+ARTBOARDS=$("$BUNDLE_PATH"/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" --include-symbols=YES | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
+
 mkdir -p "$EXPORT_FOLDER" || true
 
 # move old artboards to temp directory to compare them with the new ones
 rm -rf .oldArtboards || true
 mv "$FILE_FOLDER" .oldArtboards || true
-
-# get list of artboards regex to ignore
-IGNORE=$([ -e .sketchignore ] && (cat .sketchignore | sed '/^$/d' | sed 's/^/^/' | sed 's/$/$/' | tr '\n' ',') || echo "")
-
-# get list of artboard names to export
-ARTBOARDS=$("$BUNDLE_PATH"/Contents/Resources/sketchtool/bin/sketchtool list artboards "$FILENAME" --include-symbols=YES | python "$(dirname "$0")"/getArtboardNames.py "$IGNORE" | tr '\n' ',')
-
 
 # generate new artboards
 mkdir -p "$FILE_FOLDER"
