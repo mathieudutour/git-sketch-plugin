@@ -190,6 +190,7 @@ export function checkForFile (context) {
   try {
     getCurrentFileName(context)
     getCurrentDirectory(context)
+    getGitDirectory(context)
     return true
   } catch (e) {
     sendError(context, 'Missing file')
