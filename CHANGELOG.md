@@ -1,3 +1,9 @@
+## [0.11.1] - 2017-05-05
+
+* Check if we are in a git repo before exporting the artboards (Thanks @yuchuanxi)
+* Add an option to export the artboards on save (Thanks @yuchuanxi)
+
+
 ## [0.11.0] - 2017-05-05
 
 * Fix export artboards when file name contains special character
