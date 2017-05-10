@@ -8,7 +8,8 @@ const LOCAL_PREFS = {
   exportFolder: '.exportedArtboards',
   exportFormat: 'png',
   exportScale: '1.0',
-  includeOverviewFile: true
+  includeOverviewFile: true,
+  autoExportOnSave: false
 }
 const GLOBAL_PREFS = {
   terminal: 'Terminal',

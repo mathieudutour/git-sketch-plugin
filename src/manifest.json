@@ -17,6 +17,16 @@
       }
     },
     {
+      "name": "autoExportOnSave",
+      "identifier": "autoExportOnSave",
+      "script": "./commands/autoExportOnSave.js",
+      "handlers" : {
+        "actions": {
+          "DocumentSaved": "onRun"
+        }
+      }
+    },
+    {
       "name": "Commit",
       "identifier": "commit",
       "shortcut": "cmd alt ctrl c",
