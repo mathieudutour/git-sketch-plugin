@@ -58,6 +58,10 @@ class Preferences extends Component {
           <input type='checkbox' checked={preferences.includeOverviewFile} id='includeOverviewFile' onChange={this.linkState('preferences.includeOverviewFile')} />
           <label htmlFor='includeOverviewFile'> Save an overview file with rendered artboards</label>
         </div>
+        <div className='form'>
+          <input type='checkbox' checked={preferences.autoExportOnSave} id='autoExportOnSave' onChange={this.linkState('preferences.autoExportOnSave')} />
+          <label htmlFor='autoExportOnSave'> Auto export artboards on save</label>
+        </div>
         <h2>Miscellaneous</h2>
         <div className='form'>
           <label htmlFor='terminal'>Terminal App</label>
