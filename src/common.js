@@ -190,11 +190,20 @@ export function checkForFile (context) {
   try {
     getCurrentFileName(context)
     getCurrentDirectory(context)
-    getGitDirectory(context)
     return true
   } catch (e) {
     sendError(context, 'Missing file')
     createFailAlert(context, 'Missing file', 'You need to open a sketch file before doing that')
+    return false
+  }
+}
+export function checkForGitRepository (context) {
+  try {
+    getGitDirectory(context)
+    return true
+  } catch (e) {
+    sendError(context, 'Not a git repository')
+    createFailAlert(context, 'Not a git repository', 'You need to init git repository first')
     return false
   }
 }
