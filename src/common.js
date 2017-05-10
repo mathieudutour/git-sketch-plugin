@@ -197,6 +197,16 @@ export function checkForFile (context) {
     return false
   }
 }
+export function checkForGitRepository (context) {
+  try {
+    getGitDirectory(context)
+    return true
+  } catch (e) {
+    sendError(context, 'Not a git repository')
+    createFailAlert(context, 'Not a git repository', 'You need to init git repository first')
+    return false
+  }
+}
 
 function TextArea (x, y, width, heigh) {
   const scrollView = NSScrollView.alloc().initWithFrame(NSMakeRect(x, y, width, heigh))
