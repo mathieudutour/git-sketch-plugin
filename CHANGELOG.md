@@ -1,3 +1,8 @@
+## [0.11.2] - 2017-05-25
+
+* URL-encode artboard image paths in the overview markdown (Thanks @mattjbray)
+
+
 ## [0.11.1] - 2017-05-05
 
 * Check if we are in a git repo before exporting the artboards (Thanks @yuchuanxi)
