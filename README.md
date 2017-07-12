@@ -1,3 +1,8 @@
+## This plugin was a first attempt to bring version control and collaboration to designers. Since then, Sketch evolved a lot and my new project takes advantages of them to unlock _true_ version control. Check it out: [http://kactus.io](http://kactus.io)
+
+---
+
+
 <img align="right" src="logo.png">
 
 git-sketch-plugin
