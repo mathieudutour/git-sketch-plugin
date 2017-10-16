@@ -24,7 +24,7 @@ export function exec (context, command) {
   command = `cd "${path}" && ${command}`
 
   task.setLaunchPath_('/bin/bash')
-  task.setArguments_(NSArray.arrayWithObjects_('-c', '-l', command, null))
+  task.setArguments_(NSArray.arrayWithArray_(['-c', '-l', command]))
   task.standardOutput = pipe
   task.standardError = errPipe
   task.launch()
