@@ -1,3 +1,8 @@
+## [0.11.3] - 2017-10-16
+
+* Fix NSArray error which blocked committing and generating files for diffs. 
+
+
 ## [0.11.2] - 2017-05-25
 
 * URL-encode artboard image paths in the overview markdown (Thanks @mattjbray)
