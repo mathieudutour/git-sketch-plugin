@@ -72,7 +72,7 @@ class Preferences extends Component {
         </div>
         <div className='form'>
           <input type='checkbox' checked={preferences.sendAnalytics} id='sendAnalytics' onChange={this.linkState('preferences.sendAnalytics')} />
-          <label htmlFor='sendAnalytics'> Send anymous usage data to improve the plugin</label>
+          <label htmlFor='sendAnalytics'> Send anonymous usage data to improve the plugin</label>
         </div>
       </div>
     )
