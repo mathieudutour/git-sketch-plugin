@@ -1,5 +1,7 @@
 body {
   font-family: -apple-system;
+  background: white;
+  padding-top: 20px;
 }
 
 .branch {
@@ -8,13 +10,13 @@ body {
   clear: both;
 }
 
-  .branch.selected {
-    opacity: 1;
-  }
+.branch.selected {
+  opacity: 1;
+}
 
-  .branch:hover {
-    opacity: 1;
-  }
+.branch:hover {
+  opacity: 1;
+}
 
 .name {
   cursor: pointer;
@@ -24,19 +26,19 @@ body {
   float: right;
   cursor: pointer;
 }
-  .delete img {
-    width: 15px;
-  }
+.delete img {
+  width: 15px;
+}
 
 .create {
   position: fixed;
   width: 100%;
-  bottom: 23px;
+  bottom: 0;
   left: 0;
   border: 0;
   border-radius: 0;
   height: 40px;
-  background-image: linear-gradient(180deg, #8F779D, #613B75);
+  background-image: linear-gradient(180deg, #8f779d, #613b75);
   color: white;
   letter-spacing: 0.3px;
   font-size: 13px;

@@ -1,12 +1,16 @@
----
 extends:
   - standard
   - standard-preact
   - plugin:import/warnings
   - plugin:import/errors
   - sketch
+  - prettier
+plugins:
+  - prettier
 parserOptions:
   ecmaVersion: 2017
   sourceType: module
   ecmaFeatures:
     jsx: true
+rules:
+  import/no-unresolved: [2, { ignore: ["^sketch$"] }]

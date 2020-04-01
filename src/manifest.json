@@ -1,26 +1,11 @@
 {
-  "name": "Git",
-  "author": "Mathieu Dutour",
-  "authorEmail" : "mathieu@dutour.me",
-  "identifier": "me.dutour.mathieu.git-plugin",
-  "compatibleVersion": 3,
-  "bundleVersion": 2,
+  "icon": "icon.png",
   "commands": [
-    {
-      "name": "update",
-      "identifier": "update",
-      "script": "./commands/update.js",
-      "handlers" : {
-        "actions": {
-          "OpenDocument": "onRun"
-        }
-      }
-    },
     {
       "name": "autoExportOnSave",
       "identifier": "autoExportOnSave",
       "script": "./commands/autoExportOnSave.js",
-      "handlers" : {
+      "handlers": {
         "actions": {
           "DocumentSaved": "onRun"
         }
@@ -31,31 +16,31 @@
       "identifier": "commit",
       "shortcut": "cmd alt ctrl c",
       "script": "./commands/Commit.js",
-      "description" : "Commit your changes.",
-      "icon" : "icons/commit.png"
+      "description": "Commit your changes.",
+      "icon": "icons/commit.png"
     },
     {
       "name": "Push",
       "identifier": "push",
       "shortcut": "cmd alt ctrl p",
       "script": "./commands/Push.js",
-      "description" : "Push your commits to GitHub.",
-      "icon" : "icons/push.png"
+      "description": "Push your commits to GitHub.",
+      "icon": "icons/push.png"
     },
     {
       "name": "Branches",
       "identifier": "branches",
       "shortcut": "cmd alt ctrl b",
       "script": "./commands/Branches.js",
-      "description" : "Manage git branches.",
-      "icon" : "icons/branches.png"
+      "description": "Manage git branches.",
+      "icon": "icons/branches.png"
     },
     {
       "name": "Pull",
       "identifier": "pull",
       "script": "./commands/Pull.js",
-      "description" : "Pull changes and branches from GitHub.",
-      "icon" : "icons/pull.png"
+      "description": "Pull changes and branches from GitHub.",
+      "icon": "icons/pull.png"
     },
     {
       "name": "Generate files for pretty diffs",
@@ -92,12 +77,7 @@
       "pull",
       {
         "title": "Advanced",
-        "items": [
-          "init",
-          "export",
-          "add",
-          "terminal"
-        ]
+        "items": ["init", "export", "add", "terminal"]
       },
       "preferences"
     ]

@@ -1,16 +1,21 @@
 // Add this file to the repo
-import { sendEvent } from '../analytics'
-import { getCurrentFileName, checkForFile, executeSafely, exec } from '../common'
+import {
+  getCurrentFileName,
+  checkForFile,
+  executeSafely,
+  exec
+} from "../common";
+import { UI } from "sketch";
 
-export default function (context) {
-  if (!checkForFile(context)) { return }
-  executeSafely(context, function () {
-    sendEvent(context, 'Add', 'add current file')
-    var currentFileName = getCurrentFileName(context)
+export default function() {
+  if (!checkForFile()) {
+    return;
+  }
+  executeSafely(function() {
+    const currentFileName = getCurrentFileName();
     if (currentFileName) {
-      var command = `git add "${currentFileName}"`
-      exec(context, command)
-      context.document.showMessage('File added to git')
+      exec(`git add "${currentFileName}"`);
+      UI.message("File added to git");
     }
-  })
+  });
 }

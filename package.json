@@ -3,54 +3,65 @@
   "version": "0.11.3",
   "description": "Plugin to handle versioning in git",
   "main": "Git.sketchplugin",
-  "manifest": "src/manifest.json",
-  "resources": [
-    "Resources/branches.js",
-    "Resources/preferences.js"
-  ],
+  "skpm": {
+    "name": "Git",
+    "manifest": "src/manifest.json",
+    "identifier": "me.dutour.mathieu.git-plugin",
+    "assets": [
+      "assets/**/*"
+    ],
+    "resources": [
+      "Resources/branches.js",
+      "Resources/preferences.js"
+    ]
+  },
   "directories": {
     "doc": "docs",
     "example": "example"
   },
   "scripts": {
     "test": "eslint -c ./.eslintrc src/ && eslint -c ./.eslintrc Resources/",
-    "postinstall": "npm run build && skpm link ./",
-    "build": "skpm build",
+    "postinstall": "npm run build && skpm-link",
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
     "publish": "skpm publish"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mathieudutour/git-sketch-plugin.git"
   },
-  "author": "Mathieu Dutour <mathieu@dutour.me> (http://mathieu.dutour.me/)",
+  "author": "Mathieu Dutour <mathieu@dutour.me>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mathieudutour/git-sketch-plugin/issues"
   },
   "homepage": "https://github.com/mathieudutour/git-sketch-plugin#readme",
   "devDependencies": {
-    "babel-plugin-add-module-exports": "0.2.1",
+    "@skpm/builder": "^0.7.5",
+    "@skpm/extract-loader": "^2.0.2",
     "babel-plugin-transform-react-jsx": "^6.8.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "eslint": "^3.19.0",
-    "eslint-config-sketch": "^0.2.0",
-    "eslint-config-standard": "^10.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "4.2.2",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "skpm": "^0.9.7"
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-sketch": "^0.2.4",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-preact": "^1.0.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "html-loader": "^0.5.5",
+    "prettier": "^2.0.2"
   },
   "dependencies": {
-    "eslint-config-sketch": "^0.2.2",
-    "eslint-config-standard-preact": "^1.0.1",
-    "eslint-plugin-react": "^6.10.3",
-    "preact": "^7.1.0",
-    "sketch-module-fs": "^0.1.2",
-    "sketch-module-google-analytics": "^0.1.3",
-    "sketch-module-update": "^0.1.2",
+    "@skpm/child_process": "^0.4.2",
+    "@skpm/dialog": "^0.4.0",
+    "@skpm/fs": "^0.2.5",
+    "linkstate": "^1.1.1",
+    "preact": "^10.3.4",
     "sketch-module-user-preferences": "^1.0.1",
-    "sketch-module-web-view": "^0.1.4"
+    "sketch-module-web-view": "^3.4.1"
   }
 }

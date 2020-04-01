@@ -1,16 +1,18 @@
 body {
   font-family: -apple-system;
+  background: white;
+  padding-top: 10px;
 }
 
 .save {
   position: fixed;
   width: 100%;
-  bottom: 23px;
+  bottom: 0;
   left: 0;
   border: 0;
   border-radius: 0;
   height: 40px;
-  background-image: linear-gradient(180deg, #8F779D, #613B75);
+  background-image: linear-gradient(180deg, #8f779d, #613b75);
   color: white;
   letter-spacing: 0.3px;
   font-size: 13px;

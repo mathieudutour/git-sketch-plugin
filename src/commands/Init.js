@@ -1,28 +1,40 @@
 // Init git repo and add current file to the repo (cmd alt ctrl n)
-import { sendEvent } from '../analytics'
-import { checkForFile, getCurrentFileName, executeSafely, exec, createInput, createFailAlert } from '../common'
+import { UI } from "sketch";
+import {
+  checkForFile,
+  getCurrentFileName,
+  executeSafely,
+  exec,
+  createFailAlert
+} from "../common";
 
-export default function (context) {
-  if (!checkForFile(context)) { return }
-  executeSafely(context, function () {
-    var currentFileName = getCurrentFileName(context)
-    if (currentFileName) {
-      sendEvent(context, 'Init', 'Start init')
-      var command = `git init && git add "${currentFileName}"`
-      var message = exec(context, command)
-      context.document.showMessage(message)
-      var remoteURL = createInput(context, 'URL of the remote repo (you can create one here: https://github.com/new)', 'Add remote', 'Not now')
-
-      if (remoteURL.responseCode == 1000 && remoteURL.message != null) {
-        sendEvent(context, 'Init', 'Add remote')
-        command = `git remote add origin ${remoteURL.message}; exit`
-        message = exec(context, command)
-        context.document.showMessage(message.split('\n').join(' '))
-      } else {
-        sendEvent(context, 'Init', 'Cancel add remote')
-      }
-    } else {
-      createFailAlert(context, 'Failed...', 'Cannot get the current file name')
+export default function() {
+  if (!checkForFile()) {
+    return;
+  }
+  executeSafely(function() {
+    const currentFileName = getCurrentFileName();
+    if (!currentFileName) {
+      createFailAlert("Failed...", "Cannot get the current file name");
+      return;
     }
-  })
+
+    const message = exec(`git init && git add "${currentFileName}"`);
+    UI.message(message);
+    UI.getInputFromUser(
+      "URL of the remote repo",
+      {
+        okButton: "Add Remote",
+        cancelButton: "Not now",
+        description: "you can create one here: https://github.com/new"
+      },
+      (err, value) => {
+        if (err) {
+          return;
+        }
+        const res = exec(`git remote add origin ${value.trim()}; exit`);
+        UI.message(res.split("\n").join(" "));
+      }
+    );
+  });
 }
