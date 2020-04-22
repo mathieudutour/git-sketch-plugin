@@ -1,6 +1,6 @@
 {
   "name": "git-sketch-plugin",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Plugin to handle versioning in git",
   "main": "Git.sketchplugin",
   "skpm": {
