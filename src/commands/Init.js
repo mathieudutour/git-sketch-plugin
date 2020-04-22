@@ -5,14 +5,14 @@ import {
   getCurrentFileName,
   executeSafely,
   exec,
-  createFailAlert
+  createFailAlert,
 } from "../common";
 
-export default function() {
+export default function () {
   if (!checkForFile()) {
     return;
   }
-  executeSafely(function() {
+  executeSafely(function () {
     const currentFileName = getCurrentFileName();
     if (!currentFileName) {
       createFailAlert("Failed...", "Cannot get the current file name");
@@ -26,7 +26,7 @@ export default function() {
       {
         okButton: "Add Remote",
         cancelButton: "Not now",
-        description: "you can create one here: https://github.com/new"
+        description: "you can create one here: https://github.com/new",
       },
       (err, value) => {
         if (err) {

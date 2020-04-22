@@ -2,11 +2,11 @@
 import { UI } from "sketch";
 import { checkForFile, executeSafely, exec } from "../common";
 
-export default function() {
+export default function () {
   if (!checkForFile()) {
     return;
   }
-  executeSafely(function() {
+  executeSafely(function () {
     exec("git pull -q");
     UI.message("Changes pulled");
   });

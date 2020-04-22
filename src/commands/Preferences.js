@@ -4,7 +4,7 @@ import WebUI from "sketch-module-web-view";
 import { executeSafely } from "../common";
 import { getUserPreferences, setUserPreferences } from "../preferences";
 
-export default function() {
+export default function () {
   const preferences = getUserPreferences();
   const webUI = new WebUI({
     identifier: "git-sketch-plugin.preferences",
@@ -14,7 +14,7 @@ export default function() {
     minimizable: false,
     maximizable: false,
     titleBarStyle: "hidden",
-    show: false
+    show: false,
   });
 
   webUI.loadURL(require("../../Resources/preferences.html"));
@@ -27,8 +27,8 @@ export default function() {
     webUI.webContents.executeJavaScript("window.ready=true");
   });
 
-  webUI.webContents.on("savePreferences", prefs => {
-    executeSafely(function() {
+  webUI.webContents.on("savePreferences", (prefs) => {
+    executeSafely(function () {
       setUserPreferences(prefs);
       webUI.close();
       UI.message("Preferences updated");

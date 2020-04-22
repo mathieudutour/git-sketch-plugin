@@ -5,16 +5,16 @@ import {
   checkForFile,
   executeSafely,
   exec,
-  createInputWithCheckbox
+  createInputWithCheckbox,
 } from "../common";
 import { exportArtboards } from "../exportArtboards";
 import { getUserPreferences } from "../preferences";
 
-export default function() {
+export default function () {
   if (!checkForFile()) {
     return;
   }
-  executeSafely(function() {
+  executeSafely(function () {
     const currentBranch = getCurrentBranch();
     const prefs = getUserPreferences();
     const commitMsg = createInputWithCheckbox(

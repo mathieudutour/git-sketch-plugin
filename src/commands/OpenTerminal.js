@@ -2,7 +2,7 @@
 import { getCurrentDirectory } from "../common";
 import { getUserPreferences } from "../preferences";
 
-export default function() {
+export default function () {
   const path = getCurrentDirectory();
   const { terminal } = getUserPreferences();
   NSWorkspace.sharedWorkspace().openFile_withApplication_(path, terminal);

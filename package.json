@@ -58,7 +58,7 @@
   "dependencies": {
     "@skpm/child_process": "^0.4.2",
     "@skpm/dialog": "^0.4.0",
-    "@skpm/fs": "^0.2.5",
+    "@skpm/fs": "^0.2.6",
     "linkstate": "^1.1.1",
     "preact": "^10.3.4",
     "sketch-module-user-preferences": "^1.0.1",

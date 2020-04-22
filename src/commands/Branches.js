@@ -3,7 +3,7 @@ import { UI } from "sketch";
 import { getCurrentBranch, checkForFile, exec, executeSafely } from "../common";
 import WebUI from "sketch-module-web-view";
 
-export default function() {
+export default function () {
   if (!checkForFile()) {
     return;
   }
@@ -26,7 +26,7 @@ export default function() {
       minimizable: false,
       maximizable: false,
       titleBarStyle: "hidden",
-      show: false
+      show: false,
     });
 
     webUI.loadURL(require("../../Resources/branches.html"));
@@ -42,8 +42,8 @@ export default function() {
       webUI.webContents.executeJavaScript("window.ready=true");
     });
 
-    webUI.webContents.on("checkoutBranch", name => {
-      executeSafely(function() {
+    webUI.webContents.on("checkoutBranch", (name) => {
+      executeSafely(function () {
         exec(`git checkout -q ${name}`);
         const app = NSApp.delegate();
         app.refreshCurrentDocument();
@@ -51,14 +51,14 @@ export default function() {
         UI.message(`Switched to branch '${name}'`);
       });
     });
-    webUI.webContents.on("deleteBranch", name => {
-      executeSafely(function() {
+    webUI.webContents.on("deleteBranch", (name) => {
+      executeSafely(function () {
         exec(`git branch -d ${name}`);
         UI.message(`Deleted branch '${name}'`);
       });
     });
     webUI.webContents.on("createBranch", () => {
-      executeSafely(function() {
+      executeSafely(function () {
         UI.getInputFromUser(
           "New Branch Name",
           { okButton: "Create Branch" },

@@ -27,24 +27,19 @@ export function exec(command) {
   return execSync(command, {
     cwd: path,
     shell: "/bin/bash",
-    encoding: "utf8"
-  });
+    encoding: "utf8",
+  }).trim();
 }
 
 export function getCurrentDirectory() {
   const document = Document.getSelectedDocument();
   return String(
-    document.sketchObject
-      .fileURL()
-      .URLByDeletingLastPathComponent()
-      .path()
+    document.sketchObject.fileURL().URLByDeletingLastPathComponent().path()
   );
 }
 
 export function getGitDirectory() {
-  return exec("git rev-parse --show-toplevel")
-    .trim()
-    .replace("(B[m", "");
+  return exec("git rev-parse --show-toplevel").trim().replace("(B[m", "");
 }
 
 export function getCurrentFileName() {
@@ -58,7 +53,7 @@ export function createFailAlert(title, error, buttonToReport) {
     type: "error",
     message: title,
     detail: "" + error,
-    buttons: ["OK", ...(buttonToReport ? ["Report Issue"] : [])]
+    buttons: ["OK", ...(buttonToReport ? ["Report Issue"] : [])],
   });
 
   if (responseCode) {
@@ -87,7 +82,7 @@ export function createFailAlert(title, error, buttonToReport) {
   }
 
   return {
-    responseCode
+    responseCode,
   };
 }
 
@@ -120,7 +115,7 @@ export function createInputWithCheckbox(
   return {
     responseCode: responseCode,
     message: String(message),
-    checked: checkbox.state() == 1
+    checked: checkbox.state() == 1,
   };
 }
 
@@ -176,6 +171,6 @@ function TextArea(x, y, width, heigh) {
   scrollView.documentView = input;
   return {
     view: scrollView,
-    getValue: () => input.string()
+    getValue: () => input.string(),
   };
 }

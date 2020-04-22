@@ -3,15 +3,15 @@ import {
   getCurrentFileName,
   checkForFile,
   executeSafely,
-  exec
+  exec,
 } from "../common";
 import { UI } from "sketch";
 
-export default function() {
+export default function () {
   if (!checkForFile()) {
     return;
   }
-  executeSafely(function() {
+  executeSafely(function () {
     const currentFileName = getCurrentFileName();
     if (currentFileName) {
       exec(`git add "${currentFileName}"`);

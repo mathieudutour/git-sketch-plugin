@@ -9,11 +9,11 @@ const LOCAL_PREFS = {
   exportFormat: "png",
   exportScale: "1.0",
   includeOverviewFile: true,
-  autoExportOnSave: false
+  autoExportOnSave: false,
 };
 const GLOBAL_PREFS = {
   terminal: "Terminal",
-  diffByDefault: true
+  diffByDefault: true,
 };
 
 export function getUserPreferences() {
@@ -35,7 +35,7 @@ export function getUserPreferences() {
 export function setUserPreferences(prefs) {
   const localPrefs = {};
   const globalPrefs = {};
-  Object.keys(prefs).forEach(k => {
+  Object.keys(prefs).forEach((k) => {
     if (Object.keys(LOCAL_PREFS).indexOf(k) !== -1) {
       localPrefs[k] = prefs[k];
     } else {
